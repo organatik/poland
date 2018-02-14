@@ -1,0 +1,97 @@
+.wrapper
+  border-right: 2px solid #E3E3E5
+  height: calc(100vh - 81px)
+  max-height: calc(100vh - 81px)
+  overflow: scroll
+  background-color: #F0F1F1
+  .header
+    background-color: #0c86f9
+    color: white
+    p
+      margin: 0
+      padding: 20px
+  .info
+    margin-top: 10px
+    img
+      width: 100%
+    select
+      width: 100%
+      height: 30px
+  .info-vacans
+    margin-top: 10px
+
+
+.middle
+  width: 100%
+  text-align: center
+  margin-top: 20px
+  border-bottom: 2px solid #E3E3E5
+  h1
+    font-family: 'Dax', sans-serif
+    color: #fff
+  input[type="radio"]
+    display: none
+    &:checked + .box
+      border-bottom: 2px solid red
+      padding-bottom: 5px
+      display: block
+      span
+        color: white
+        transform: translateY(70px)
+        &:before
+          transform: translateY(0px)
+          opacity: 1
+  .my1
+    background-color: pink
+  .my2
+    background-color: purple
+  .my3
+    background-color: blue
+  .my4
+    background-color: greenyellow
+  .my5
+    background-color: yellow
+  .my6
+    background-color: darkslateblue
+  .box
+    width: 50px
+    height: 50px
+    transition: all 250ms ease
+    will-change: transition
+    display: inline-block
+    text-align: center
+    cursor: pointer
+    position: relative
+    font-family: 'Dax', sans-serif
+    font-weight: 900
+    &:active
+      transform: translateY(10px)
+
+.footer
+  padding-left: 30px
+  margin-top: 20px
+  p
+    padding: 10px
+    margin-bottom: 10px
+    &:nth-child(2)
+      font-size: 18px
+      i
+        margin-right: 15px
+  input
+    background-color: transparent
+    outline: none
+    padding: 10px
+    width: 92%
+  button
+    padding: 20px
+    text-align: center
+    background-color: #0c86f9
+    width: 100%
+    margin-top: 93px
+    font-size: 20px
+    color: white
+    outline: none
+    border-right: 4px
+    &:active
+      background-color: #1277f9
+

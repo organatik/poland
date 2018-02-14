@@ -1,0 +1,78 @@
+.wrapper
+  width: 100%
+  min-height: 100vh
+  background-image: url(../../assets/login-bkg.jpg)
+  background-size: cover
+  background-repeat: no-repeat
+  .login
+    background-color: rgba(193,93,113, 0.2)
+    margin-top: 200px
+    text-align: center
+    padding: 35px 10px
+    button
+      display: inline-block
+      width: 200px
+      height: 50px
+      margin-top: 20px
+      background: transparent
+      border: 1px solid black
+      font-size: 20px
+      outline: none
+      color: black
+      &:disabled
+        opacity: 0.2
+      &:valid
+        &:hover
+          background-color: rgba(193,93,113, 0.5)
+          cursor: pointer
+    label
+      margin-top: 20px
+    input
+      width: 75%
+      border: 1px solid black
+      padding: 5px 10px
+      background: transparent
+      outline: none
+      &::placeholder
+        color: rgb(193,93,113)
+    h2
+      margin: 0
+      padding: 0
+.login
+  position: relative
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
+  &:before
+    content: ""
+    position: absolute
+    z-index: -1
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    top: 0
+    bottom: 0
+    left: 10px
+    right: 10px
+    -moz-border-radius: 100px / 10px
+    border-radius: 100px / 10px
+  &:after
+    content: ""
+    position: absolute
+    z-index: -1
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
+    top: 0
+    bottom: 0
+    left: 10px
+    right: 10px
+    -moz-border-radius: 100px / 10px
+    border-radius: 100px / 10px
+    right: 10px
+    left: auto
+    -webkit-transform: skew(8deg) rotate(3deg)
+    -moz-transform: skew(8deg) rotate(3deg)
+    -ms-transform: skew(8deg) rotate(3deg)
+    -o-transform: skew(8deg) rotate(3deg)
+    transform: skew(8deg) rotate(3deg)

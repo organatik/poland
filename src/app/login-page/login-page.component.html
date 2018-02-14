@@ -1,0 +1,37 @@
+<div class="container-fluid wrapper">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 login">
+        <h2>Log In Using Your Mobile</h2>
+        <div class="content-get-code" *ngIf="getCodeShow">
+          <form [formGroup]="loginForm">
+            <label for="phone">Please enter your phone number to receive the code:</label>
+            <input pattern="[0-9]*" formControlName="phoneNumber" id="phone"  type="tel" >
+            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid" (click)="GetCode()">Get Code</button>
+          </form>
+        </div>
+        <div class="content-get-code" *ngIf="acceptCodeShow">
+          <form [formGroup]="codeForm">
+            <label for="code">Enter code from SMS:</label>
+            <input formControlName="code" id="code" style="text-align: center;"  type="text">
+            <button class="btn btn-primary" (click)="CheckCode()" [disabled]="codeForm.invalid">Accept Code</button>
+          </form>
+        </div>
+        <div class="register-user" *ngIf="registerShow" >
+          <form [formGroup]="codeForm">
+            <div class="form-group">
+              <label for="phoneN">Phone:</label>
+              <input   id="phoneN" style="text-align: center;"  type="tel">
+            </div>
+            <div class="form-group">
+              <label style="margin-top: 20px;" for="name">Name:</label>
+              <input  id="name" style="text-align: center;"  type="tel">
+            </div>
+
+            <button class="btn btn-primary" [disabled]="codeForm.invalid">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
