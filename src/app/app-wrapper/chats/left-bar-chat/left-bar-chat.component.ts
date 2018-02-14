@@ -1,4 +1,5 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {SelectedItemService} from '../../../selected-item.service';
 
 @Component({
   selector: 'app-left-bar-chat',
@@ -9,7 +10,7 @@ import {Component, Injectable, Input, OnInit} from '@angular/core';
 export class LeftBarChatComponent implements OnInit {
   @Input() users;
   selectedItem;
-  constructor() { }
+  constructor( private item: SelectedItemService) { }
   selectItem(index) {
     this.selectedItem = index;
   }
@@ -17,6 +18,10 @@ export class LeftBarChatComponent implements OnInit {
 
 
   ngOnInit() {
+    this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
+  }
+  newSelectedItem() {
+    this.item.changeSelectedItem(this.selectedItem);
   }
 
 }

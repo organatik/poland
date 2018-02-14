@@ -1,17 +1,16 @@
 <div class="col-md-3 wrapper">
   <div class="row">
     <div class="col-md-12 header-photo">
-      <img src="../../../../assets/avatar.png" alt="Avatar">
+      <img [src]="users[selectedItem].avatarUrl" alt="Avatar">
     </div>
     <div class="col-md-12 info">
-      <p>Sergey</p>
-      <p><span>Страна:</span> Украина</p>
-      <p><span>Возрвст:</span> 29</p>
-      <p><span>Образование:</span> Высшее</p>
-      <p><span>О себе:</span> Строитель со стажем</p>
+      <p>{{ users[selectedItem].name }} {{ users[selectedItem].surname }} </p>
+      <p><span>Страна:</span> {{ users[selectedItem].country }}</p>
+      <p><span>Возрвст:</span> {{ users[selectedItem].age }}</p>
+      <p><span>Образование:</span> {{ users[selectedItem].education }}</p>
+      <p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p>
     </div>
     <div class="col-md-12 vacans">
-      SELECTED: {{ selected}}
       <img src="../../../../assets/images.jpeg" alt="">
       <p>Есть потребность в сварщике высшего уровня!Жильем - обеспечим</p>
     </div>

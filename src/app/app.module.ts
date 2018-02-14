@@ -16,6 +16,7 @@ import { VacansLeftComponent } from './app-wrapper/vacans/vacans-left/vacans-lef
 import { VacansRightComponent } from './app-wrapper/vacans/vacans-right/vacans-right.component';
 import { ItemVacansComponent } from './app-wrapper/vacans/vacans-right/item-vacans/item-vacans.component';
 import { ProfileComponent } from './app-wrapper/profile/profile.component';
+import {SelectedItemService} from './selected-item.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { ProfileComponent } from './app-wrapper/profile/profile.component';
     ReactiveFormsModule,
     RatingModule
   ],
-  providers: [],
+  providers: [SelectedItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
