@@ -17,6 +17,9 @@ import { VacansRightComponent } from './app-wrapper/vacans/vacans-right/vacans-r
 import { ItemVacansComponent } from './app-wrapper/vacans/vacans-right/item-vacans/item-vacans.component';
 import { ProfileComponent } from './app-wrapper/profile/profile.component';
 import {SelectedItemService} from './selected-item.service';
+import {LoginService} from "./shared/service/login.service";
+import {AuthGuard} from "./shared/service/guard.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -39,9 +42,11 @@ import {SelectedItemService} from './selected-item.service';
     BrowserModule,
     ROUTING,
     ReactiveFormsModule,
-    RatingModule
+    RatingModule,
+    HttpClientModule,
+
   ],
-  providers: [SelectedItemService],
+  providers: [SelectedItemService, LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
