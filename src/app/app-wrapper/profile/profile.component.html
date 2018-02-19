@@ -8,26 +8,54 @@
       <div class="col-md-10 info">
         <p>
           <span>Имя компании:</span>
-          <span>FeDex</span>
+          <span *ngIf="!editable">{{ name.value }}</span>
+          <span *ngIf="editable">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input class="form-control" type="text" [formControl]="name">
+          </span>
         </p>
         <p>
           <span>Дата рождения:</span>
-          <span>30.05.1990</span>
+          <span *ngIf="!editable">{{ bday.value }}</span>
+          <span *ngIf="editable">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input class="form-control" type="text" [formControl]="bday">
+          </span>
         </p>
         <p>
           <span>Страна:</span>
-          <span>Украина</span>
+          <span *ngIf="!editable">{{ country.value }}</span>
+          <span *ngIf="editable">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input class="form-control" type="text" [formControl]="country">
+          </span>
         </p>
         <p>
           <span>Образование:</span>
-          <span>Высщие техническое</span>
+          <span *ngIf="!editable">{{ education.value }}</span>
+          <span *ngIf="editable">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input class="form-control" type="text" [formControl]="education">
+          </span>
         </p>
-        <p>
+        <div class="skills">
           <span>Навыки:</span>
-          <span>Навык,Навык2,Навык3,Навык4</span>
-        </p>
+          <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
+          <ol>
+            <li *ngFor="let skill of skillsList;let i = index">
+              {{ skill }}
+              <i class="fa fa-times" (click)="deleteSkill(i)" aria-hidden="true"></i>
+            </li>
 
-        <button>Edit Profile</button>
+          </ol>
+          <button *ngIf="editable" (click)="addSkill()">Add skill</button>
+        </div>
+
+
+      </div>
+      <div class="col-md-12 controls">
+        <button (click)="edit()">Edit Profile</button>
+        <button *ngIf="editable" (click)="save()">Save</button>
       </div>
     </div>
   </div>
