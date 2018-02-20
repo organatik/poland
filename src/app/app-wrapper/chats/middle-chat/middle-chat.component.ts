@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiddleChatComponent implements OnInit {
 
+  messages = [
+    'Приежайте на роботу!',
+    'Сдесь можно посмотреть информацию о факультете!',
+    'Могу отправить информацию позже'
+  ];
+  selectedText;
+
+  selectText(index) {
+    this.selectedText = index;
+  }
+
   constructor() { }
 
   ngOnInit() {

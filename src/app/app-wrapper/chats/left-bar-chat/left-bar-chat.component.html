@@ -17,8 +17,16 @@
         </div>
         <div class="col-md-10">
           <p>{{ user.name }} {{ user.surname }} <span class="pull-right">{{ user.time }}</span></p>
-          <p>{{ user.country }}, {{ user.age }} age <span class="pull-right">{{ user.rating }}</span></p>
-          <p>{{ user.lastMessage }}</p>
+          <p>{{ user.country }}, {{ user.age }} age </p>
+
+          <p>
+            <span class="msg-status">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <i class="fa fa-check-circle" aria-hidden="true"></i>
+              <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </span>
+            {{ user.lastMessage }}
+          </p>
         </div>
       </div>
     </div>

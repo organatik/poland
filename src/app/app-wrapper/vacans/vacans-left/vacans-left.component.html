@@ -24,7 +24,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 info-vacans">
-      <textarea [(ngModel)]='advert.description' rows="10" cols="30"></textarea>
+      <textarea [(ngModel)]='advert.description' rows="8" cols="30"></textarea>
     </div>
     <div class="col-md-12 colors">
       <div class="middle">
@@ -75,8 +75,8 @@
         <input type="text" placeholder="Введите хеш-теги..." [(ngModel)]='teg'>
       </p>
       <p>
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
-        <input type="text" placeholder="Введите локацию" [(ngModel)]='advert.location'>
+        <i class="fa fa-map-marker" style="margin-right: 14px;" aria-hidden="true"></i>
+        <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.location'>
       </p>
       <button (click)="create()">Разместить</button>
     </div>

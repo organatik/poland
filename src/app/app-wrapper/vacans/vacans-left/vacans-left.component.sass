@@ -2,7 +2,7 @@
   border-right: 2px solid #E3E3E5
   height: calc(100vh - 91px)
   max-height: calc(100vh - 91px)
-  overflow: scroll
+  overflow-y: scroll
   background-color: #F0F1F1
   .header
     background-color: #0c86f9
@@ -19,6 +19,9 @@
       height: 30px
   .info-vacans
     margin-top: 10px
+    textarea
+      resize: none
+      width: 100%
 
 
 .middle
@@ -73,10 +76,8 @@
   p
     padding: 10px
     margin-bottom: 10px
-    &:nth-child(2)
-      font-size: 18px
-      i
-        margin-right: 15px
+    i
+      margin-right: 10px
   input
     background-color: transparent
     outline: none

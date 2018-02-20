@@ -111,18 +111,21 @@
               <img src="../../../../assets/avatar.png" alt="Avatar">
             </span>
           </div>
+          <div class="col-md-12 read-more">
+            <button class="btn btn-default">
+              Read more
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 chat-controls">
-      <input placeholder="Введите текст..." type="text">
+      <input placeholder="Введите текст..." type="text" [ngModel]="messages[selectedText]">
       <button>Отправить</button>
-      <p>Приежайте на роботу!</p>
-      <p>Сдесь можно посмотреть информацию о факультете!</p>
-      <p>Могу отправить информацию позже</p>
-      <p>Могу отправить информацию позже</p>
+      <p *ngFor="let msg of messages;let i = index" (click)="selectText(i)">{{msg}}</p>
     </div>
   </div>
 </div>
