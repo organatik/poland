@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {VacansService} from "../../shared/service/vacans.service";
 
 @Component({
   selector: 'app-vacans',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vacans.component.sass']
 })
 export class VacansComponent implements OnInit {
-
-  constructor() { }
+  adverts = [];
+  constructor(private vacansService: VacansService) {
+    this.vacansService.getVac().subscribe((data: any) => {
+      console.log(data)
+      this.adverts = data.adverts;
+    })
+  }
 
   ngOnInit() {
   }

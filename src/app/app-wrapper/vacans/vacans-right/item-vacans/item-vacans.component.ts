@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {VacansService} from "../../../../shared/service/vacans.service";
 
 @Component({
   selector: 'app-item-vacans',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemVacansComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vacansService: VacansService) { }
+
+  @Input() advert;
 
   ngOnInit() {
+  }
+
+  remove(){
+    this.vacansService.closeVac(this.advert).subscribe((data) => {
+      console.log(data)
+    })
   }
 
 }

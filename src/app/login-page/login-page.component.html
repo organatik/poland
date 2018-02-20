@@ -13,17 +13,17 @@
         <div class="content-get-code" *ngIf="acceptCodeShow">
           <form [formGroup]="codeForm">
             <label for="code">Enter code from SMS:</label>
-            <input formControlName="code" id="code" style="text-align: center;"  type="text">
+            <input formControlName="code" id="code" style="text-align: center;"  type="text" [(ngModel)]="code">
             <button class="btn btn-primary" (click)="CheckCode()" [disabled]="codeForm.invalid">Accept Code</button>
           </form>
         </div>
         <div class="register-user" *ngIf="registerShow" >
-          <form [formGroup]="codeForm">
+          <form [formGroup]="nameForm">
             <div class="form-group">
               <label style="margin-top: 20px;" for="name">Name:</label>
-              <input  id="name" style="text-align: center;"  type="tel">
+              <input formControlName="name"  id="name" style="text-align: center;"  type="text" [(ngModel)]="name">
             </div>
-            <button class="btn btn-primary" [disabled]="codeForm.invalid">Register</button>
+            <button class="btn btn-primary" (click)="reg()" [disabled]="codeForm.invalid">Register</button>
           </form>
         </div>
       </div>

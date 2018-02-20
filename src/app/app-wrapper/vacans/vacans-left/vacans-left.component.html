@@ -12,9 +12,11 @@
         </div>
         <div class="col-md-8">
           <p>Тарас Подгорецкий</p>
-          <select>
-            <option>Пункт 1</option>
-            <option>Пункт 2</option>
+          <select [(ngModel)]='advert.vacancy.work_type'>
+            <option value="0">FULL TIME</option>
+            <option value="1">PART_TIME </option>
+            <option value="2">CONTRACT  </option>
+            <option value="3">ONE_TIME  </option>
           </select>
         </div>
       </div>
@@ -22,43 +24,43 @@
   </div>
   <div class="row">
     <div class="col-md-12 info-vacans">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi ipsum nobis quam quidem, sunt tempore temporibus vel veniam. Consequuntur dolores ducimus et id modi mollitia nesciunt non nulla recusandae, veniam?</p>
+      <textarea [(ngModel)]='advert.description' rows="10" cols="30"></textarea>
     </div>
     <div class="col-md-12 colors">
       <div class="middle">
-        <label>
-          <input type="radio" name="radio" checked/>
+        <label (click)="advert.vacancy.background_resource_id = 'pink'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'pink'"/>
           <div class="my1 box">
 
           </div>
         </label>
 
-        <label>
-          <input type="radio" name="radio"/>
+        <label (click)="advert.vacancy.background_resource_id = 'purple'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'purple'"/>
           <div class="my2 box">
 
           </div>
         </label>
-        <label>
-          <input type="radio" name="radio"/>
+        <label (click)="advert.vacancy.background_resource_id = 'blue'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'blue'"/>
           <div class="my3 box">
 
           </div>
         </label>
-        <label>
-          <input type="radio" name="radio"/>
+        <label (click)="advert.vacancy.background_resource_id = 'green'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'green'"/>
           <div class="my4 box">
 
           </div>
         </label>
-        <label>
-          <input type="radio" name="radio"/>
+        <label (click)="advert.vacancy.background_resource_id = 'yelow'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'yelow'"/>
           <div class="my5 box">
 
           </div>
         </label>
-        <label>
-          <input type="radio" name="radio"/>
+        <label (click)="advert.vacancy.background_resource_id = 'darkslateblue'">
+          <input type="radio" name="radio" [checked]="advert.vacancy.background_resource_id === 'darkslateblue'"/>
           <div class="my6 box">
 
           </div>
@@ -70,13 +72,13 @@
     <div class="col-md-12 footer">
       <p>
         <i class="fa fa-hashtag" aria-hidden="true"></i>
-        <input type="text" placeholder="Введите хеш-теги...">
+        <input type="text" placeholder="Введите хеш-теги..." [(ngModel)]='teg'>
       </p>
       <p>
         <i class="fa fa-map-marker" aria-hidden="true"></i>
-        Краков, Польща.
+        <input type="text" placeholder="Введите локацию" [(ngModel)]='advert.location'>
       </p>
-      <button>Разместить</button>
+      <button (click)="create()">Разместить</button>
     </div>
   </div>
 </div>

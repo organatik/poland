@@ -12,14 +12,14 @@
       <div class="row">
         <div class="col-md-12 vacans">
           <img src="../../../../assets/images.jpeg" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, neque, quos? Accusantium asperiores aut cum dolorum obcaecati perferendis sint ullam.</p>
+          <p>{{advert.advert.description}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 location">
           <p>
             <i class="fa fa-map-marker" aria-hidden="true"></i>
-            Краков, Польща
+            {{advert.advert.location}}
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 controls">
-          <button>Убрать</button>
+          <button (click)="remove()">Убрать</button>
           <button>Поднять в топ</button>
         </div>
       </div>

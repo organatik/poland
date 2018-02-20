@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ROUTING } from './app.routing';
-import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';  // <-- #1 import module
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AppWrapperComponent } from './app-wrapper/app-wrapper.component';
@@ -20,6 +20,9 @@ import {SelectedItemService} from './selected-item.service';
 import {LoginService} from "./shared/service/login.service";
 import {AuthGuard} from "./shared/service/guard.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ChatService} from "./shared/service/chat.service";
+import {ProfileService} from "./shared/service/profile.service";
+import {VacansService} from "./shared/service/vacans.service";
 
 
 @NgModule({
@@ -42,11 +45,12 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     ROUTING,
     ReactiveFormsModule,
+    FormsModule,
     RatingModule,
     HttpClientModule,
 
   ],
-  providers: [SelectedItemService, LoginService, AuthGuard],
+  providers: [SelectedItemService, LoginService, AuthGuard, ChatService, ProfileService, VacansService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@
         <img src="../../../assets/avatar.png" alt="">
       </div>
       <div class="col-md-10 info">
-        <p>
+        <p *ngIf="name.value || editable">
           <span>Имя компании:</span>
           <span *ngIf="!editable">{{ name.value }}</span>
           <span *ngIf="editable">
@@ -14,7 +14,7 @@
             <input class="form-control" type="text" [formControl]="name">
           </span>
         </p>
-        <p>
+        <p *ngIf="bday.value || editable">
           <span>Дата рождения:</span>
           <span *ngIf="!editable">{{ bday.value }}</span>
           <span *ngIf="editable">
@@ -22,7 +22,7 @@
             <input class="form-control" type="text" [formControl]="bday">
           </span>
         </p>
-        <p>
+        <p *ngIf="country.value || editable">
           <span>Страна:</span>
           <span *ngIf="!editable">{{ country.value }}</span>
           <span *ngIf="editable">
@@ -30,7 +30,7 @@
             <input class="form-control" type="text" [formControl]="country">
           </span>
         </p>
-        <p>
+        <p *ngIf="education.value || editable">
           <span>Образование:</span>
           <span *ngIf="!editable">{{ education.value }}</span>
           <span *ngIf="editable">
@@ -38,7 +38,7 @@
             <input class="form-control" type="text" [formControl]="education">
           </span>
         </p>
-        <div class="skills">
+        <div *ngIf="skillsList.length || editable" class="skills">
           <span>Навыки:</span>
           <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
           <ol>
@@ -54,7 +54,7 @@
 
       </div>
       <div class="col-md-12 controls">
-        <button (click)="edit()">Edit Profile</button>
+        <button *ngIf="!editable" (click)="edit()">Edit Profile</button>
         <button *ngIf="editable" (click)="save()">Save</button>
       </div>
     </div>

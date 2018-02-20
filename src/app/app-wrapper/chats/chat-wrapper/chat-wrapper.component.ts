@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatService} from "../../../shared/service/chat.service";
 
 @Component({
   selector: 'app-chat-wrapper',
@@ -81,7 +82,11 @@ export class ChatWrapperComponent implements OnInit {
       aboutme: 'Сварщик 3-го разряда'
     },
   ];
-  constructor() { }
+  constructor(private chatService: ChatService) {
+    this.chatService.myChats().subscribe((data) => {
+      console.log(data);
+    })
+  }
 
   ngOnInit() {
   }
