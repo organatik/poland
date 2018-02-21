@@ -1,19 +1,20 @@
-<div class="col-md-3 wrapper">
+<div class="col-md-3 wrapper" *ngIf="selectedItem">
   <div class="row">
     <div class="col-md-12 header-photo">
-      <img [src]="users[selectedItem].avatarUrl" alt="Avatar">
+      <img  *ngIf="!selectedItem.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
+      <img  *ngIf="selectedItem.another_user.avatar_url" [src]="selectedItem.another_user.avatar_url" alt="Avatar">
     </div>
     <div class="col-md-12 info">
-      <p>{{ users[selectedItem].name }} {{ users[selectedItem].surname }} </p>
-      <p><span>Страна:</span> {{ users[selectedItem].country }}</p>
-      <p><span>Возрвст:</span> {{ users[selectedItem].age }}</p>
-      <p><span>Образование:</span> {{ users[selectedItem].education }}</p>
-      <p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p>
+      <p>{{ selectedItem.another_user.name }} </p>
+      <p *ngIf="selectedItem.another_user.country"><span>Страна:</span> {{ selectedItem.another_user.country }}</p>
+      <p *ngIf="selectedItem.another_user.birth_date"><span>Возрвст:</span> {{ calculateAge(selectedItem.another_user.birth_date) }}</p>
+      <p *ngIf="selectedItem.another_user.education"><span>Образование:</span> {{ selectedItem.another_user.education }}</p>
+      <!--<p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p>-->
     </div>
     <div class="col-md-12 vacans">
       <h5>Вакансия:</h5>
       <img src="../../../../assets/images.jpeg" alt="">
-      <p>Есть потребность в сварщике высшего уровня!Жильем - обеспечим</p>
+      <p>{{selectedItem.answers[0].advert.description}}</p>
     </div>
   </div>
 </div>

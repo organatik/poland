@@ -15,8 +15,12 @@ export class RightBarChatComponent implements OnInit {
 
 
   ngOnInit() {
-    this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
+    this.item.changeEvent.subscribe(selectedItem => {this.selectedItem = selectedItem; console.log(selectedItem)});
 
   }
-
+  calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - new Date(birthday).getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 }

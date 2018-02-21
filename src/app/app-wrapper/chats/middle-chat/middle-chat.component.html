@@ -1,7 +1,7 @@
-<div class="col-md-6 wrapper">
+<div class="col-md-6 wrapper"  *ngIf="selectedItem">
   <div class="row">
     <div class="col-md-12 header">
-      <span>Чат с Сергеем</span>
+      <span>Чат с {{selectedItem.another_user.name }}</span>
       <select class="pull-right">
         <option>Переводить на польский</option>
         <option>Переводить на русский</option>
@@ -12,105 +12,45 @@
   <div class="row">
     <div class="col-md-12 body-chat">
       <div class="row">
-        <div class="col-md-12 msg-to-you">
-          <div class="col-md-1">
+        <div *ngFor="let item of chatMessages" class="col-md-12 " [ngClass]="{'my-msg': item.author_id === profile.user_id, 'msg-to-you': item.author_id !== profile.user_id}">
+          <div *ngIf="item.author_id === profile.user_id" class="col-md-1">
             <span class="avatar">
-              <img src="../../../../assets/images.jpeg" alt="Avatar">
+
+              <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="Avatar">
+              <img *ngIf="!profile.avatar_url" src="../../../../assets/images.jpeg" alt="Avatar">
             </span>
           </div>
           <div class="col-md-11">
-            <p>Привет!! Как дела?Пойдешь работать?</p>
+            <p>{{item.chat_message.text}}</p>
           </div>
-        </div>
-        <div class="col-md-12 my-msg">
-          <div class="col-md-10">
-            <p>Привет! Все окей ! Вылетаю!</p>
-          </div>
-          <div class="col-md-2">
+          <div *ngIf="item.author_id !== profile.user_id" class="col-md-1">
             <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
+              <img *ngIf="selectedItem && selectedItem.another_user.avatar_url" src="selectedItem.another_user.avatar_url" alt="Avatar">
+              <img *ngIf="selectedItem && !selectedItem.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
             </span>
           </div>
         </div>
-        <div class="col-md-12 msg-to-you">
-          <div class="col-md-1">
-            <span class="avatar">
-              <img src="../../../../assets/images.jpeg" alt="Avatar">
-            </span>
-          </div>
-          <div class="col-md-11">
-            <p>Привет!! Как дела?Пойдешь работать?</p>
-          </div>
-        </div>
-        <div class="col-md-12 my-msg">
-          <div class="col-md-10">
-            <p>Привет! Все окей ! Вылетаю!</p>
-          </div>
-          <div class="col-md-2">
-            <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
-            </span>
-          </div>
-        </div>
-        <div class="col-md-12 msg-to-you">
-          <div class="col-md-1">
-            <span class="avatar">
-              <img src="../../../../assets/images.jpeg" alt="Avatar">
-            </span>
-          </div>
-          <div class="col-md-11">
-            <p>Привет!! Как дела?Пойдешь работать?</p>
-          </div>
-        </div>
-        <div class="col-md-12 my-msg">
-          <div class="col-md-10">
-            <p>Привет! Все окей ! Вылетаю!</p>
-          </div>
-          <div class="col-md-2">
-            <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
-            </span>
-          </div>
-        </div>
-        <div class="col-md-12 msg-to-you">
-          <div class="col-md-1">
-            <span class="avatar">
-              <img src="../../../../assets/images.jpeg" alt="Avatar">
-            </span>
-          </div>
-          <div class="col-md-11">
-            <p>Привет!! Как дела?Пойдешь работать?</p>
-          </div>
-        </div>
-        <div class="col-md-12 my-msg">
-          <div class="col-md-10">
-            <p>Привет! Все окей ! Вылетаю!</p>
-          </div>
-          <div class="col-md-2">
-            <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
-            </span>
-          </div>
-        </div>
-        <div class="col-md-12 msg-to-you">
-          <div class="col-md-1">
-            <span class="avatar">
-              <img src="../../../../assets/images.jpeg" alt="Avatar">
-            </span>
-          </div>
-          <div class="col-md-11">
-            <p>Привет!! Как дела?Пойдешь работать?</p>
-          </div>
-        </div>
-        <div class="col-md-12 my-msg">
-          <div class="col-md-10">
-            <p>Привет! Все окей ! Вылетаю!</p>
-          </div>
-          <div class="col-md-2">
-            <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
-            </span>
-          </div>
+        <!--<div class="col-md-12 msg-to-you">-->
+          <!--<div class="col-md-1">-->
+            <!--<span class="avatar">-->
+              <!--<img src="../../../../assets/images.jpeg" alt="Avatar">-->
+            <!--</span>-->
+          <!--</div>-->
+          <!--<div class="col-md-11">-->
+            <!--<p>Привет!! Как дела?Пойдешь работать?</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-12 my-msg">-->
+          <!--<div class="col-md-10">-->
+            <!--<p>Привет! Все окей ! Вылетаю!</p>-->
+          <!--</div>-->
+          <!--<div class="col-md-2">-->
+            <!--<span class="avatar">-->
+              <!--<img src="../../../../assets/avatar.png" alt="Avatar">-->
+            <!--</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="col-md-12 my-msg" *ngIf="chatMessages.length === 10">
           <div class="col-md-12 read-more">
             <button class="btn btn-default">
               Read more
@@ -123,8 +63,8 @@
   </div>
   <div class="row">
     <div class="col-md-12 chat-controls">
-      <input placeholder="Введите текст..." type="text" [ngModel]="messages[selectedText]">
-      <button>Отправить</button>
+      <input placeholder="Введите текст..." type="text" [ngModel]="selectedText">
+      <button (click)="send()">Отправить</button>
       <p *ngFor="let msg of messages;let i = index" (click)="selectText(i)">{{msg}}</p>
     </div>
   </div>

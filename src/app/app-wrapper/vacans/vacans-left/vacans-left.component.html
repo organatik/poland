@@ -8,10 +8,11 @@
     <div class="col-md-12 info">
       <div class="row">
         <div class="col-md-4">
-          <img src="../../../../assets/avatar.png" alt="">
+          <img *ngIf="profile && !profile.avatar_url" src="../../../../assets/avatar.png" alt="">
+          <img *ngIf="profile && profile.avatar_url" class="avatar" [src]="profile.avatar_url" alt="">
         </div>
         <div class="col-md-8">
-          <p style="font-weight: bold;">Тарас Подгорецкий</p>
+          <p style="font-weight: bold;" *ngIf="profile && profile.name">{{profile.name}}</p>
           <select [(ngModel)]='advert.vacancy.work_type'>
             <option value="0">FULL TIME</option>
             <option value="1">PART_TIME </option>

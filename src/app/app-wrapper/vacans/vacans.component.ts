@@ -9,13 +9,18 @@ import {VacansService} from "../../shared/service/vacans.service";
 export class VacansComponent implements OnInit {
   adverts = [];
   constructor(private vacansService: VacansService) {
-    this.vacansService.getVac().subscribe((data: any) => {
-      console.log(data)
-      this.adverts = data.adverts;
-    })
+    this.vacansService.refreshEvent.subscribe((data) => {
+      this.getData();
+    });
+    this.getData();
   }
 
   ngOnInit() {
   }
-
+  getData(){
+    this.vacansService.getVac().subscribe((data: any) => {
+      console.log(data)
+      this.adverts = data.adverts;
+    });
+  }
 }

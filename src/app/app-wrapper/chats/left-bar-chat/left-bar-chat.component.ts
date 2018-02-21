@@ -9,19 +9,21 @@ import {SelectedItemService} from '../../../selected-item.service';
 @Injectable()
 export class LeftBarChatComponent implements OnInit {
   @Input() users;
-  selectedItem;
+  selectedItem = {};
   constructor( private item: SelectedItemService) { }
-  selectItem(index) {
-    this.selectedItem = index;
-  }
-
-
 
   ngOnInit() {
-    this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
+    // this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
   }
-  newSelectedItem() {
-    this.item.changeSelectedItem(this.selectedItem);
+  newSelectedItem(obj) {
+    this.item.changeEvent.emit(obj);
+    this.selectedItem = obj;
+  }
+
+  calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - new Date(birthday).getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
 }

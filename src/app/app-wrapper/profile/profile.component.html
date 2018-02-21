@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-12 wrapper">
       <div class="col-md-2">
-        <img src="../../../assets/avatar.png" alt="">
+        <img *ngIf="name.value && !profile.avatar_url" src="../../../assets/avatar.png" alt="" style="max-width: 200px;">
+        <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="" style="max-width: 200px;">
       </div>
       <div class="col-md-10 info">
         <p *ngIf="name.value || editable">
@@ -16,10 +17,18 @@
         </p>
         <p *ngIf="bday.value || editable">
           <span>Дата рождения:</span>
-          <span *ngIf="!editable">{{ bday.value }}</span>
+          <span *ngIf="!editable">{{ bday.value | date}}</span>
           <span *ngIf="editable">
             <i class="fa fa-pencil" aria-hidden="true"></i>
-            <input class="form-control" type="text" [formControl]="bday">
+            <input class="form-control" type="date" [formControl]="bday">
+          </span>
+        </p>
+        <p *ngIf="avatar_url.value || editable">
+          <span>Url icon:</span>
+          <span *ngIf="!editable">{{ avatar_url.value }}</span>
+          <span *ngIf="editable">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input class="form-control" type="text" [formControl]="avatar_url">
           </span>
         </p>
         <p *ngIf="country.value || editable">
@@ -44,7 +53,7 @@
           <ol>
             <li *ngFor="let skill of skillsList;let i = index">
               {{ skill }}
-              <i class="fa fa-times" (click)="deleteSkill(i)" aria-hidden="true"></i>
+              <i *ngIf="editable" class="fa fa-times" (click)="deleteSkill(i)" aria-hidden="true"></i>
             </li>
 
           </ol>

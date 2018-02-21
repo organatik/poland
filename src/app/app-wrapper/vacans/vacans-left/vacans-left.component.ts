@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {VacansService} from "../../../shared/service/vacans.service";
+import {ProfileService} from "../../../shared/service/profile.service";
 
 @Component({
   selector: 'app-vacans-left',
@@ -21,11 +22,14 @@ export class VacansLeftComponent implements OnInit {
       work_type: 0,
       hashtags: []
     }
+  };
 
-
-};
-
-  constructor(private vacansService: VacansService) { }
+  profile;
+  constructor(private vacansService: VacansService, private profileService: ProfileService) {
+    this.profileService.getProfile().subscribe((data: any) => {
+      this.profile = data.profile;
+    });
+  }
 
   ngOnInit() {
   }
@@ -36,7 +40,22 @@ export class VacansLeftComponent implements OnInit {
       this.advert.vacancy.hashtags = tegs;
     }
     this.vacansService.createVac(this.advert).subscribe((data) => {
-      console.log(data)
+      console.log(data);
+      this.vacansService.refreshEvent.emit("");
+      this.advert = {
+        adverter_id: "",
+        location: "",
+        description: "",
+        geo_position : {
+          latitude: 1,
+          longitude: 2
+        },
+        vacancy: {
+          background_resource_id: "pink",
+          work_type: 0,
+          hashtags: []
+        }
+      };
     });
   }
 

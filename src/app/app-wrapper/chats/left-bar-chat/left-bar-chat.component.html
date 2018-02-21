@@ -9,23 +9,26 @@
   </div>
   <div class="row">
     <div class="col-md-12 body">
-      <div class="row wrapper-msg" *ngFor="let user of users;let i = index" (click)="selectItem(i)" (click)="newSelectedItem()"  [class.active]="i == selectedItem" >
+      <div class="row wrapper-msg" *ngFor="let obj of users;let i = index" (click)="newSelectedItem(obj)"  [class.active]="obj.last_read_id === selectedItem.last_read_id" >
         <div class="col-md-2 photo">
           <span class="avatar">
-            <img [src]="user.avatarUrl" alt="Avatar">
+            <img *ngIf="obj.another_user.avatar_url" [src]="obj.another_user.avatar_url" alt="Avatar">
+              <img  *ngIf="!obj.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
           </span>
         </div>
         <div class="col-md-10">
-          <p>{{ user.name }} {{ user.surname }} <span class="pull-right">{{ user.time }}</span></p>
-          <p>{{ user.country }}, {{ user.age }} age </p>
+          <p>{{ obj.another_user.name }}
+            <span class="pull-right">{{ obj.last_message.chat_message.time | date }}</span>
+          </p>
+          <p>{{ obj.another_user.country }}, {{ calculateAge(obj.another_user.birth_date) }} age </p>
 
           <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis">
             <span class="msg-status">
-              <i class="fa fa-check" aria-hidden="true"></i>
-              <i class="fa fa-check-circle" aria-hidden="true"></i>
-              <i class="fa fa-times-circle" aria-hidden="true"></i>
+              <!--<i class="fa fa-check" aria-hidden="true"></i>-->
+              <!--<i class="fa fa-check-circle" aria-hidden="true"></i>-->
+              <!--<i class="fa fa-times-circle" aria-hidden="true"></i>-->
             </span>
-            {{ user.lastMessage }}
+            {{ obj.last_message.chat_message.text }}
           </p>
         </div>
       </div>

@@ -13,6 +13,8 @@ export class ProfileComponent implements OnInit {
   bday = new FormControl('');
   country = new FormControl('');
   education = new FormControl('');
+  avatar_url = new FormControl('');
+
   skills = new FormControl();
   skillsList = [];
 
@@ -29,13 +31,17 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfile().subscribe((data: any) => {
       console.log(data);
       this.name = new FormControl(data.profile.name);
-      if(data.birth_date)
+      if(data.profile.birth_date)
       this.bday = new FormControl(data.profile.birth_date);
-      if(data.country)
+      if(data.profile.country)
       this.country = new FormControl(data.profile.country);
-      if(data.education)
+      if(data.profile.education)
         this.education = new FormControl(data.profile.education);
-      if(data.skills && data.skills.length)
+      if(data.profile.avatar_url){
+        this.avatar_url = new FormControl(data.profile.avatar_url);
+        this.profile.avatar_url = data.profile.avatar_url;
+      }
+      if(data.profile.skills && data.profile.skills.length)
         this.skillsList = data.profile.skills;
     })
   }
@@ -48,6 +54,16 @@ export class ProfileComponent implements OnInit {
   save() {
     if(this.name.value)
       this.profile.name = this.name.value;
+    if(this.avatar_url.value)
+      this.profile.avatar_url = this.avatar_url.value;
+    if(this.bday.value)
+      this.profile.birth_date = new Date(this.bday.value);
+    if(this.country.value)
+      this.profile.country = this.country.value;
+    if(this.education.value)
+      this.profile.education = this.education.value ;
+    if(this.skillsList && this.skillsList.length)
+      this.profile.skills = this.skillsList;
 
     this.profileService.setProfile(this.profile).subscribe((data) => {
       console.log(data)
