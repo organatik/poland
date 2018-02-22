@@ -37,23 +37,34 @@ export class MiddleChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.getChatData();
-    }, 10000);
+    // setInterval(() => {
+    //   this.getChatData();
+    // }, 10000);
   }
-
+  older_messages_token;
+  total_number_of_messages;
   getChatData(){
     if(this.selectedItem)
     this.chatService.chatInfo(this.selectedItem.another_user.user_id).subscribe((res: any) => {
       this.chatMessages = res.chat_messages;
+      console.log(res);
+      this.older_messages_token = res.older_messages_token;
+      this.total_number_of_messages   = res.total_number_of_messages;
+    });
+  }
+  readMore(){
+    this.chatService.chatInfo(this.selectedItem.another_user.user_id, this.older_messages_token).subscribe((res: any) => {
+      this.chatMessages = [...this.chatMessages, ...res.chat_messages];
+      this.older_messages_token = res.older_messages_token;
+      this.total_number_of_messages   = res.total_number_of_messages;
     });
   }
 
   send(){
-    console.log(this.selectedItem)
     if(this.selectedItem)
-    this.chatService.chatSend(this.selectedItem.another_user.user_id, this.selectedItem.answers[0].answer_id, this.selectedText).subscribe((data) => {
-     this.getChatData();
-    })
+      this.chatService.chatSend(this.selectedItem.another_user.user_id, this.selectedItem.answers[0].answer_id, this.selectedText).subscribe((data) => {
+       this.getChatData();
+        this.selectedText = "";
+      });
   }
 }

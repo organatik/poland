@@ -50,9 +50,9 @@
             <!--</span>-->
           <!--</div>-->
         <!--</div>-->
-        <div class="col-md-12 my-msg" *ngIf="chatMessages.length === 10">
+        <div class="col-md-12 my-msg" *ngIf="chatMessages.length < total_number_of_messages">
           <div class="col-md-12 read-more">
-            <button class="btn btn-default">
+            <button (click)="readMore()" class="btn btn-default">
               Read more
               <i class="fa fa-caret-down" aria-hidden="true"></i>
             </button>
@@ -63,7 +63,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 chat-controls">
-      <input placeholder="Введите текст..." type="text" [ngModel]="selectedText">
+      <input placeholder="Введите текст..." type="text" [(ngModel)]="selectedText">
       <button (click)="send()">Отправить</button>
       <p *ngFor="let msg of messages;let i = index" (click)="selectText(i)">{{msg}}</p>
     </div>

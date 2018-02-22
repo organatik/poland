@@ -1,10 +1,12 @@
 import {CanActivate, Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 
-export const apiUrl = 'http://51.15.65.96:8080/json-api/';
+// export const url = 'ws://51.15.65.96:8080/';
+// export const apiUrl = 'http://51.15.65.96:8080/json-api/';
+// export const wsUrl = 'ws://51.15.65.96:8080/ws-api/';
+  export const url = 'ws://51.15.65.96:8080/';
+export const apiUrl = 'https://chatchatchat.ml/json-api/';
 export const wsUrl = 'ws://51.15.65.96:8080/ws-api/';
-export const url = 'ws://51.15.65.96:8080/';
-
 @Injectable()
 export class AuthGuard implements CanActivate {
   private isLoggedIn = false;

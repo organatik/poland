@@ -39,6 +39,9 @@ export class VacansLeftComponent implements OnInit {
       let tegs = this.teg.split("#");
       this.advert.vacancy.hashtags = tegs;
     }
+
+    this.advert.vacancy.work_type = +this.advert.vacancy.work_type;
+    if(this.advert.description)
     this.vacansService.createVac(this.advert).subscribe((data) => {
       console.log(data);
       this.vacansService.refreshEvent.emit("");

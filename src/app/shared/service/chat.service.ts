@@ -11,9 +11,15 @@ export class ChatService {
     return this.http.post(apiUrl + 'my-chats', this.authGuard.getCredentials());
   }
 
-  chatInfo(another_user_id){
+  chatInfo(another_user_id, older_messages_token?){
     let obj = this.authGuard.getCredentials();
     obj.another_user_id = another_user_id;
+    if(older_messages_token){
+      obj.older_messages_token = older_messages_token;
+    } else {
+      delete obj.older_messages_token;
+    }
+
     return this.http.post(apiUrl + 'chat-info', obj);
   }
   chatSend(another_user_id, answer_id, text){

@@ -8,7 +8,7 @@ import {$WebSocket, WebSocketSendMode} from 'angular2-websocket/angular2-websock
 import {Router} from "@angular/router";
 declare var SockJS;
 // connect
-var ws = new $WebSocket(url + 'ws-api/debug-listen-sms');
+// var ws = new $WebSocket(url + 'ws-api/debug-listen-sms');
 // "/json-api/debug-listen-sms
 
 
@@ -64,24 +64,24 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    ws.onMessage(
-      (msg: MessageEvent)=> {
-        console.log("onMessage ", msg.data);
-      },
-      {autoApply: false}
-    );
-    ws.getDataStream().subscribe(
-      (msg)=> {
-        console.log("next", msg.data);
-        ws.close(false);
-      },
-      (msg)=> {
-        console.log("error", msg);
-      },
-      ()=> {
-        console.log("complete");
-      }
-    );
+    // ws.onMessage(
+    //   (msg: MessageEvent)=> {
+    //     console.log("onMessage ", msg.data);
+    //   },
+    //   {autoApply: false}
+    // );
+    // ws.getDataStream().subscribe(
+    //   (msg)=> {
+    //     console.log("next", msg.data);
+    //     ws.close(false);
+    //   },
+    //   (msg)=> {
+    //     console.log("error", msg);
+    //   },
+    //   ()=> {
+    //     console.log("complete");
+    //   }
+    // );
   }
 
   GetCode() {
@@ -91,24 +91,24 @@ export class LoginPageComponent implements OnInit {
     this.loginService.sendPhone(this.phone).subscribe((data: any) => {
       console.log(data);
       this.challenge_id = data.challenge_id;
-      ws.onMessage(
-        (msg: MessageEvent)=> {
-          console.log("onMessage ", msg.data);
-        },
-        {autoApply: false}
-      );
-      ws.getDataStream().subscribe(
-        (msg)=> {
-          console.log("next", msg.data);
-          ws.close(false);
-        },
-        (msg)=> {
-          console.log("error", msg);
-        },
-        ()=> {
-          console.log("complete");
-        }
-      );
+      // ws.onMessage(
+      //   (msg: MessageEvent)=> {
+      //     console.log("onMessage ", msg.data);
+      //   },
+      //   {autoApply: false}
+      // );
+      // ws.getDataStream().subscribe(
+      //   (msg)=> {
+      //     console.log("next", msg.data);
+      //     ws.close(false);
+      //   },
+      //   (msg)=> {
+      //     console.log("error", msg);
+      //   },
+      //   ()=> {
+      //     console.log("complete");
+      //   }
+      // );
     });
   }
   CheckCode() {

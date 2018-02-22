@@ -19,7 +19,9 @@ export class VacansService {
     return this.http.post(apiUrl + 'advert', obj);
   }
   getVac(){
-    return this.http.post(apiUrl + 'user-adverts', this.authGuard.getCredentials());
+    let obj = this.authGuard.getCredentials();
+    obj.target_id = obj.user_id;
+    return this.http.post(apiUrl + 'user-adverts', obj);
   }
   closeVac(advert){
     console.log(advert)
