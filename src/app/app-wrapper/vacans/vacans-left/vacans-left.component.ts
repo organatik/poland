@@ -19,7 +19,7 @@ export class VacansLeftComponent implements OnInit {
     },
     vacancy: {
       background_resource_id: "pink",
-      work_type: 0,
+      hiring_type: 0,
       hashtags: []
     }
   };
@@ -40,7 +40,7 @@ export class VacansLeftComponent implements OnInit {
       this.advert.vacancy.hashtags = tegs;
     }
 
-    this.advert.vacancy.work_type = +this.advert.vacancy.work_type;
+    this.advert.vacancy.hiring_type = +this.advert.vacancy.hiring_type;
     if(this.advert.description)
     this.vacansService.createVac(this.advert).subscribe((data) => {
       console.log(data);
@@ -55,7 +55,7 @@ export class VacansLeftComponent implements OnInit {
         },
         vacancy: {
           background_resource_id: "pink",
-          work_type: 0,
+          hiring_type: 0,
           hashtags: []
         }
       };
