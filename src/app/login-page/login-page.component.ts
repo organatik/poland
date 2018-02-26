@@ -3,30 +3,25 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder,  Validators } from '@angular/forms';
 import {LoginService} from "../shared/service/login.service";
 import {AuthGuard, url, wsUrl} from "../shared/service/guard.service";
-//
-import {$WebSocket, WebSocketSendMode} from 'angular2-websocket/angular2-websocket';
 import {Router} from "@angular/router";
-declare var SockJS;
-// connect
-// var ws = new $WebSocket(url + 'ws-api/debug-listen-sms');
-// "/json-api/debug-listen-sms
 
-
-
-// var sock = new SockJS(url + 'ws-api/debug-listen-sms');
-// sock.onopen = function() {
-//   console.log('open');
-//   sock.send('test');
-// };
-//
-// sock.onmessage = function(e) {
-//   console.log('message', e.data);
-//   sock.close();
-// };
-//
-// sock.onclose = function() {
-//   console.log('close');
-// };
+var ws = new WebSocket("wss://chatchatchat.ml/ws-api/", "protocolOne");
+var callbacks = {};
+ws.onmessage = function(e) {
+  console.log(e.data);
+  var m = JSON.parse(e.data);
+  callbacks[m.id](JSON.parse(m.payload));
+  delete callbacks[m.id];
+}
+var call = function(path, msg, callback) {
+  var id = 'r' + Math.random();
+  callbacks[id] = callback;
+  ws.send(JSON.stringify({
+    id: id,
+    path: path,
+    payload: JSON.stringify(msg),
+  }));
+}
 
 @Component({
   selector: 'app-login-page',
@@ -64,24 +59,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // ws.onMessage(
-    //   (msg: MessageEvent)=> {
-    //     console.log("onMessage ", msg.data);
-    //   },
-    //   {autoApply: false}
-    // );
-    // ws.getDataStream().subscribe(
-    //   (msg)=> {
-    //     console.log("next", msg.data);
-    //     ws.close(false);
-    //   },
-    //   (msg)=> {
-    //     console.log("error", msg);
-    //   },
-    //   ()=> {
-    //     console.log("complete");
-    //   }
-    // );
+    setTimeout(() => {
+      call("debug-listen-sms", {}, function(res) {
+        alert(res.text);
+      });
+      call("phone1", {phone: "34324234234"}, function(res) {
+        alert(res.text);
+
+      });
+    }, 2222);
   }
 
   GetCode() {
@@ -91,24 +77,6 @@ export class LoginPageComponent implements OnInit {
     this.loginService.sendPhone(this.phone).subscribe((data: any) => {
       console.log(data);
       this.challenge_id = data.challenge_id;
-      // ws.onMessage(
-      //   (msg: MessageEvent)=> {
-      //     console.log("onMessage ", msg.data);
-      //   },
-      //   {autoApply: false}
-      // );
-      // ws.getDataStream().subscribe(
-      //   (msg)=> {
-      //     console.log("next", msg.data);
-      //     ws.close(false);
-      //   },
-      //   (msg)=> {
-      //     console.log("error", msg);
-      //   },
-      //   ()=> {
-      //     console.log("complete");
-      //   }
-      // );
     });
   }
   CheckCode() {
@@ -132,17 +100,7 @@ export class LoginPageComponent implements OnInit {
       console.log(data);
       this.authGuard.setCredentials(data.credentials);
       this.router.navigate(['/chat']);
-      //   :
-      //   role
-      //     :
-      //     "adverter"
-      // session_id
-      //   :
-      //   "9ae81c567e6a3246ab225a98e9e269f6"
-      // user_id
-      //   :
-      //   "fb8614bf0acf2f114a02e844134f0543"
-    })
+    });
   }
 
 

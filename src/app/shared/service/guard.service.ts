@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 // export const url = 'ws://51.15.65.96:8080/';
 // export const apiUrl = 'http://51.15.65.96:8080/json-api/';
 // export const wsUrl = 'ws://51.15.65.96:8080/ws-api/';
-  export const url = 'ws://51.15.65.96:8080/';
+  export const url = 'wss://chatchatchat.ml/';
 export const apiUrl = 'https://chatchatchat.ml/json-api/';
 export const wsUrl = 'ws://51.15.65.96:8080/ws-api/';
 @Injectable()
