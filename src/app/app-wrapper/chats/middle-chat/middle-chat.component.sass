@@ -1,16 +1,21 @@
 .wrapper
   border-right: 2px solid #E3E3E5
-  height: calc(100vh - 91px)
-  max-height: calc(100vh - 91px)
+  height: calc(100vh - 78px)
+  max-height: calc(100vh - 78px)
   overflow-y: scroll
   overflow-y: hidden
+  .wrapper-chat
+    -webkit-box-shadow: inset 0px 5px 40px -14px rgba(0,0,0,0.75)
+    -moz-box-shadow: inset 0px 5px 40px -14px rgba(0,0,0,0.75)
+    box-shadow: inset 0px 5px 40px -14px rgba(0,0,0,0.75)
   .body-chat
-    background-color: #F0F1F1
-    height: 45vh
-    max-height: 45vh
+    height: 65vh
+    max-height: 65vh
     overflow-y: scroll
     padding: 20px 0
     overflow-x: hidden
+    background-color: #f6f7fa
+    z-index: -1
     .avatar
       padding-top: 4px
       display: block
@@ -19,35 +24,72 @@
         width: 30px
         border-radius: 50%
     .msg-to-you
-      margin-bottom: 15px
+      margin-bottom: 25px
       p
-        background-color: #0c86f9
-        padding: 10px
-        border-radius: 5px
+        background-color: #5584ff
+        padding: 10px 20px
+        border-radius: 20px
         color: white
+        width: 100%
+        margin-bottom: 0
+      .pull-right
+        margin-right: 18px
+        color: #a9a9a9
+        display: inline-block
+        margin-top: 5px
     .my-msg
-      margin-bottom: 15px
+      margin-bottom: 25px
       p
-        background-color: white
-        padding: 10px
-        border-radius: 5px
+        padding: 10px 20px
+        border-radius: 20px
+        background-color: #5584ff
+        color: white
+        width: 50%
+        margin-bottom: 0
+
   .header
     border-bottom: 2px solid #E3E3E5
     padding: 10px
-    background-color: #F0F1F1
+    z-index: 1
+    background-color: #ffffff
     span
-      margin-top: 6px
-      display: inline-block
-      margin-left: 20px
+      &:first-child
+        margin-top: 6px
+        display: inline-block
+        margin-left: 20px
+        color: #676b6e
+        font-weight: bold
+      &:nth-child(2)
+        color: #03a136
+        font-weight: bold
+        margin-left: 20px
+        i
+          font-size: 8px
+          margin-right: 5px
+          vertical-align: middle
+          margin-bottom: 2px
   select
     width: 60%
     height: 35px
     outline: none
     background-color: white
   .chat-controls
-    border-top: 2px solid #E3E3E5
-    padding: 0
-    padding-top: 5px
+    background-color: #f6f7fa
+    padding: 30px 10px
+    i
+      font-size: 25px
+      &:first-child
+        position: absolute
+        right: 90px
+        top: 76px
+      &:nth-child(2)
+        position: absolute
+        top: 76px
+        right: 40px
+    span
+      display: inline-block
+      margin: 0 0 8px 24px
+      color: #a9a9a9
     p
       border-bottom: 2px solid #E3E3E5
       padding: 7px
@@ -56,9 +98,14 @@
         cursor: pointer
         background-color: #F0F1F1
     input
-      width: 85%
-      height: 50px
-      padding: 0 15px
+      width: 100%
+      height: 60px
+      border-radius: 30px
+      padding: 0 25px
+      background: transparent
+      border: 1px solid #d4d9e3
+      outline: none
+      z-index: 100!important
     button
       height: 50px
       background-color: #F0F1F1

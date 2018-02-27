@@ -2,6 +2,10 @@
   <div class="row">
     <div class="col-md-12 header">
       <span>Чат с {{selectedItem.another_user.name }}</span>
+      <span>
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        В сети
+      </span>
       <select class="pull-right">
         <option>Переводить на польский</option>
         <option>Переводить на русский</option>
@@ -9,8 +13,11 @@
       </select>
     </div>
   </div>
-  <div class="row">
+  <div class="row wrapper-chat">
     <div class="col-md-12 body-chat">
+      <!-- <div class="">
+        <div class="col-md-12 my-msg">
+          <div class="col-md-1"> -->
       <div class="row">
         <div *ngFor="let item of chatMessages" class="col-md-12 " [ngClass]="{'my-msg': item.author_id === profile.user_id, 'msg-to-you': item.author_id !== profile.user_id}">
           <div *ngIf="item.author_id === profile.user_id" class="col-md-1">
@@ -30,6 +37,16 @@
             </span>
           </div>
         </div>
+        <div class="col-md-12 msg-to-you ">
+          <div class="col-md-6 col-md-offset-5">
+            <p>Привет! Все окей ! Вылетаю!</p>
+            <span class="pull-right">Прочитано</span>
+          </div>
+          <div class="col-md-1">
+            <span class="avatar">
+              <img src="../../../../assets/avatar.png" alt="Avatar">
+            </span>
+          </div>
         <!--<div class="col-md-12 msg-to-you">-->
           <!--<div class="col-md-1">-->
             <!--<span class="avatar">-->
@@ -61,11 +78,11 @@
       </div>
     </div>
   </div>
-  <div class="row">
     <div class="col-md-12 chat-controls">
-      <input placeholder="Введите текст..." type="text" [(ngModel)]="selectedText">
-      <button (click)="send()">Отправить</button>
-      <p *ngFor="let msg of messages;let i = index" (click)="selectText(i)">{{msg}}</p>
+      <i class="fa fa-question-circle" aria-hidden="true"></i>
+      <i class="fa fa-comments" aria-hidden="true"></i>
+      <span>Сергей печатает...</span>
+      <input placeholder="Введите текст..." type="text">
     </div>
   </div>
 </div>

@@ -59,15 +59,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      call("debug-listen-sms", {}, function(res) {
-        alert(res.text);
-      });
-      call("phone1", {phone: "34324234234"}, function(res) {
-        alert(res.text);
+    // setTimeout(() => {
+    //   call("debug-listen-sms", {}, function(res) {
+    //     alert(res.text);
+    //   });
+    //   call("phone1", {phone: "34324234234"}, function(res) {
+    //     alert(res.text);
 
-      });
-    }, 2222);
+    //   });
+    // }, 2222);
   }
 
   GetCode() {

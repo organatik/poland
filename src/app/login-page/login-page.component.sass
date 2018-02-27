@@ -1,78 +1,77 @@
 .wrapper
+  background-image: url(../../assets/bkg-login.png)
+  height: 100vh
   width: 100%
-  min-height: 100vh
-  background-image: url(../../assets/login-bkg.jpg)
-  background-size: cover
+  background-size: 122%
+  background-position-y: -302px
+  background-position-x: -203px
   background-repeat: no-repeat
-  .login
-    background-color: rgba(193,93,113, 0.2)
-    margin-top: 200px
+  .login-form
+    margin-top: 100px
+    -webkit-box-shadow: 10px 10px 90px -2px rgba(0,0,0,0.49)
+    -moz-box-shadow: 10px 10px 90px -2px rgba(0,0,0,0.49)
+    box-shadow: 10px 10px 90px -2px rgba(0,0,0,0.49)
+  .login-header
+    background-color: #0e1a35
+    padding-top: 15px
+    padding-right: 0
+    span
+      display: block
+      color: white
+      font-size: 18px
+      margin: 17px 0 0 30px
+      border-bottom: 4px solid #5584ff
+      padding-bottom: 31px
+      width: 100px
+      text-align: center
+      letter-spacing: 1.5px
+    img
+      width: 70px
+  .login-body
     text-align: center
-    padding: 35px 10px
+    background-color: #f6f7fa
+    padding: 60px
+    font-size: 16px
     button
-      display: inline-block
-      width: 200px
-      height: 50px
-      margin-top: 20px
-      background: transparent
-      border: 1px solid black
-      font-size: 20px
+      width: 45%
+      margin-top: 50px
+      background-color: #5584ff
+      padding: 15px
+      border-radius: 35px
+      color: white
       outline: none
-      color: black
-      &:disabled
-        opacity: 0.2
-      &:valid
-        &:hover
-          background-color: rgba(193,93,113, 0.5)
-          cursor: pointer
-    label
-      margin-top: 20px
+      &:hover
+        background-color: #1277f9
+        cursor: pointer
+      i
+        position: absolute
+        right: 33%
+        top: 64%
+        font-size: 18px
+    .input-row
+      i
+        position: absolute
+        left: 150px
+        top: 6px
+        font-size: 18px
+        color: #5584ff
     input
-      width: 75%
-      border: 1px solid black
-      padding: 5px 10px
-      background: transparent
+      background-color: transparent
+      border: none
+      border-bottom: 1px solid #d4d9e3
+      width: 60%
+      padding: 4px 10px 4px  40px
       outline: none
+      margin-bottom: 30px
+      color: #8492af
       &::placeholder
-        color: rgb(193,93,113)
-    h2
-      margin: 0
-      padding: 0
-.login
-  position: relative
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset
-  &:before
-    content: ""
-    position: absolute
-    z-index: -1
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    top: 0
-    bottom: 0
-    left: 10px
-    right: 10px
-    -moz-border-radius: 100px / 10px
-    border-radius: 100px / 10px
-  &:after
-    content: ""
-    position: absolute
-    z-index: -1
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8)
-    top: 0
-    bottom: 0
-    left: 10px
-    right: 10px
-    -moz-border-radius: 100px / 10px
-    border-radius: 100px / 10px
-    right: 10px
-    left: auto
-    -webkit-transform: skew(8deg) rotate(3deg)
-    -moz-transform: skew(8deg) rotate(3deg)
-    -ms-transform: skew(8deg) rotate(3deg)
-    -o-transform: skew(8deg) rotate(3deg)
-    transform: skew(8deg) rotate(3deg)
+        color: #8492af
+    p
+      font-size: 30px
+      color: #8492af
+      font-weight: 200
+      margin-bottom: 50px
+      span
+        color: #5584ff
+
+
