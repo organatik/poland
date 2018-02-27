@@ -39,25 +39,37 @@
             <img src="../../assets/logo.png" alt="Logo">
           </div>
           <div class="col-md-9" style="padding: 0;">
-            <span class="pull-right">Login</span>
-            <span class="pull-right">Register</span>
+            <span class="pull-right" [ngClass]="{'span-active': getCodeShow || acceptCodeShow}">Login</span>
+            <span class="pull-right" [ngClass]="{'span-active': registerShow}">Register</span>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 login-body">
-          <p>Welcome <span>back!</span></p>
-          <div class="col-md-12 ">
+          <p>Welcome <span *ngIf="!registerShow">back!</span></p>
+          <div *ngIf="getCodeShow || acceptCodeShow" class="col-md-12 ">
             <i class="fa fa-mobile" aria-hidden="true"></i>
             <input type="text" placeholder="Mobile phone" [(ngModel)]="phone" >
           </div>
-          <div class="col-md-12 input-row">
+          <div *ngIf="getCodeShow || acceptCodeShow" class="col-md-12 input-row">
             <i class="fa fa-lock" aria-hidden="true"></i>
             <input type="text" placeholder="Code from sms" [(ngModel)]="code">
           </div>
+          <div *ngIf="registerShow" class="col-md-12 input-row">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="text" placeholder="Name" [(ngModel)]="name">
+          </div>
           <div class="row">
             <div class="col-md-12">
-              <button>
+              <button *ngIf="getCodeShow" (click)="GetCode()">
+                Enter
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+              <button *ngIf="acceptCodeShow" (click)="CheckCode()">
+                Enter
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+              <button *ngIf="registerShow" (click)="reg()">
                 Enter
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </button>

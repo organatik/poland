@@ -10,6 +10,7 @@ import {SelectedItemService} from '../../../selected-item.service';
 export class LeftBarChatComponent implements OnInit {
   @Input() users;
   selectedItem = {};
+  epty = [{}, {},{},{},{}];
   constructor( private item: SelectedItemService) { }
 
   ngOnInit() {

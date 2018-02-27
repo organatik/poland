@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
   registerShow = false;
   phone = 80669461305;
   challenge_id;
-  code = 111111;
+  code;
   name = "";
   registration_token = "";
   loginForm: FormGroup;
@@ -77,6 +77,8 @@ export class LoginPageComponent implements OnInit {
     this.loginService.sendPhone(this.phone).subscribe((data: any) => {
       console.log(data);
       this.challenge_id = data.challenge_id;
+      this.code = 111111;
+
     });
   }
   CheckCode() {
