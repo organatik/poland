@@ -4,14 +4,13 @@
     <div class="col-md-12 wrapper">
       <div class="col-md-2">
         <img *ngIf="name.value && !profile.avatar_url" src="../../../assets/avatar.png" alt="" style="max-width: 200px;">
-        <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="" style="max-width: 200px;">
+        <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="" style="max-width: 200px;border-radius: 50%">
       </div>
       <div class="col-md-10 info">
         <p *ngIf="name.value || editable">
           <span>Имя компании:</span>
           <span *ngIf="!editable">{{ name.value }}</span>
           <span *ngIf="editable">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             <input class="form-control" type="text" [formControl]="name">
           </span>
         </p>
@@ -19,7 +18,6 @@
           <span>Дата рождения:</span>
           <span *ngIf="!editable">{{ bday.value | date}}</span>
           <span *ngIf="editable">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             <input class="form-control" type="date" [formControl]="bday">
           </span>
         </p>
@@ -27,7 +25,6 @@
           <span>Url icon:</span>
           <span *ngIf="!editable">{{ avatar_url.value }}</span>
           <span *ngIf="editable">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             <input class="form-control" type="text" [formControl]="avatar_url">
           </span>
         </p>
@@ -35,7 +32,6 @@
           <span>Страна:</span>
           <span *ngIf="!editable">{{ country.value }}</span>
           <span *ngIf="editable">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             <input class="form-control" type="text" [formControl]="country">
           </span>
         </p>
@@ -43,19 +39,17 @@
           <span>Образование:</span>
           <span *ngIf="!editable">{{ education.value }}</span>
           <span *ngIf="editable">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
             <input class="form-control" type="text" [formControl]="education">
           </span>
         </p>
         <div *ngIf="skillsList.length || editable" class="skills">
-          <span>Навыки:</span>
+          <span style="padding-top: 20px">Навыки:</span>
           <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
           <ol>
             <li *ngFor="let skill of skillsList;let i = index">
               {{ skill }}
-              <i *ngIf="editable" class="fa fa-times" (click)="deleteSkill(i)" aria-hidden="true"></i>
+              <i *ngIf="editable" class="fa fa-times-circle" (click)="deleteSkill(i)" aria-hidden="true"></i>
             </li>
-
           </ol>
           <button *ngIf="editable" (click)="addSkill()">Add skill</button>
         </div>

@@ -1,5 +1,8 @@
-<div class="col-md-8 wrapper">
-  <div class="row">
-    <app-item-vacans *ngFor="let advert of adverts" [advert]="advert" [profile]="profile"></app-item-vacans>
+<div class="col-md-9 wrapper">
+  <div class="col-md-12 header">
+
   </div>
+    <div class="col-md-12 wrapper-body">
+      <app-item-vacans *ngFor="let advert of adverts" [advert]="advert" [profile]="profile"></app-item-vacans>
+    </div>
 </div>

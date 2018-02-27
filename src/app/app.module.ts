@@ -23,6 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {ChatService} from "./shared/service/chat.service";
 import {ProfileService} from "./shared/service/profile.service";
 import {VacansService} from "./shared/service/vacans.service";
+import { EmptyChatComponent } from './app-wrapper/chats/empty-chat/empty-chat.component';
+import { EmptyVacansComponent } from './app-wrapper/vacans/empty-vacans/empty-vacans.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import {VacansService} from "./shared/service/vacans.service";
     VacansLeftComponent,
     VacansRightComponent,
     ItemVacansComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmptyChatComponent,
+    EmptyVacansComponent,
   ],
   imports: [
     BrowserModule,
