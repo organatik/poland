@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<app-left-bar-chat [users]="chatsUser"></app-left-bar-chat>
-<app-middle-chat></app-middle-chat>
-<app-right-bar-chat [users]="chatsUser" ></app-right-bar-chat>
-<!--<app-empty-chat></app-empty-chat>-->
+<app-left-bar-chat *ngIf="chatsUser" [users]="chatsUser"></app-left-bar-chat>
+<app-middle-chat *ngIf="chatsUser && chatsUser.length > 0"></app-middle-chat>
+<app-right-bar-chat *ngIf="chatsUser && chatsUser.length > 0" [users]="chatsUser" ></app-right-bar-chat>
+<app-empty-chat *ngIf="chatsUser && chatsUser.length === 0"></app-empty-chat>

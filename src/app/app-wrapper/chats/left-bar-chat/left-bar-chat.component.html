@@ -1,38 +1,78 @@
 <div class="col-md-3 wrapper">
   <div class="row">
     <div class="col-md-12 header">
-      <select>
-        <option>Пункт 1</option>
-        <option>Пункт 2</option>
-      </select>
+      <div class="dropdawn-wrap">
+         <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}">
+            <span>
+              Вакансии ХХХХ
+            </span>
+            <i class="fa fa-angle-down"></i>
+          </button>
+          <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
+              <ul>
+                <li><a href="">some content</a></li>
+                <li><a href="">some content</a></li>
+                <li><a href="">some content</a></li>
+                <li><a href="">some content</a></li>
+              </ul>
+          </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 body">
-      <div class="row wrapper-msg" *ngFor="let obj of users;let i = index" (click)="newSelectedItem(obj)"  [class.active]="obj.last_read_id === selectedItem.last_read_id" >
+      <div *ngIf="users">
+      <div class="row wrapper-msg" *ngFor="let obj of users;let i = index" (click)="newSelectedItem(obj)"  [class.active]="selectedItem.answers && obj.answers && obj.answers[0].answer_id === selectedItem.answers[0].answer_id" >
         <div class="col-md-2 photo">
           <span class="avatar">
             <img *ngIf="obj.another_user && obj.another_user.avatar_url" [src]="obj.another_user.avatar_url" alt="Avatar">
             <img *ngIf="obj.another_user && !obj.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
           </span>
         </div>
-        <div *ngIf="obj.another_user" class="col-md-10">
+        <div *ngIf="obj.another_user" class="col-md-10" style="margin-top: 10px;">
 
-          <p>{{ obj.another_user.name }}
-            <span class="pull-right">{{ obj.last_message.chat_message.time | date }}</span>
+          <p class="name-head">{{ obj.another_user.name }}
+            <span *ngIf = "obj.last_message" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'MM/dd/yy h:mm' }}</span>
           </p>
-          <p>{{ obj.another_user.country }}, {{ calculateAge(obj.another_user.birth_date) }} age </p>
+          <div class="star-wrap">
+              <p class="from-age">{{ obj.another_user.country }}, {{ calculateAge(obj.another_user.birth_date) }} age </p>
+             <div class="star-wrap-inside">
+                <div>
+                    <!-- <i class="material-icons">star_border</i> -->
+                    <i class="material-icons">star</i>
+                 </div>
+                 <div>
+                    <i class="material-icons">star_border</i>
+                    <!-- <i class="material-icons">star</i> -->
+                 </div>
+                 <div>
+                    <i class="material-icons">star_border</i>
+                    <!-- <i class="material-icons">star</i> -->
+                 </div>
+                 <div>
+                    <i class="material-icons">star_border</i>
+                    <!-- <i class="material-icons">star</i> -->
+                 </div>
+                 <div>
+                    <i class="material-icons">star_border</i>
+                    <!-- <i class="material-icons">star</i> -->
+                 </div>
+             </div>
+          </div>
 
-          <p *ngIf='obj.last_message' style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis">
-            <span class="msg-status">
+          <p *ngIf='obj.last_message' style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: 90px;">
+            <!-- <span class="msg-status">
               <i *ngIf="obj.last_message.message_id !== obj.last_read_id" class="fa fa-envelope" aria-hidden="true"></i>
-              <i *ngIf="obj.last_message.message_id === obj.last_read_id" class="fa fa-envelope-open" aria-hidden="true"></i>
+              <i *ngIf="obj.last_message.message_id === obj.last_read_id" class="fa fa-envelope-open" aria-hidden="true"></i> -->
+
               <!--<i class="fa fa-times-circle" aria-hidden="true"></i>-->
-            </span>
+
+            <!-- </span> -->
             {{ obj.last_message.chat_message.text }}
           </p>
         </div>
       </div>
+    </div>
       <div *ngIf="users.length === 0">
       <div  *ngFor="let obj of epty" class="row empty-msg">
         <div class="col-md-2">

@@ -43,7 +43,7 @@
           </span>
         </p>
         <div *ngIf="skillsList.length || editable" class="skills">
-          <span style="padding-top: 20px">Навыки:</span>
+          <span style="padding-top: 22px">Навыки:</span>
           <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
           <ol>
             <li *ngFor="let skill of skillsList;let i = index">

@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <app-vacans-left></app-vacans-left>
-    <app-vacans-right [adverts]="adverts"></app-vacans-right>
-    <!--<app-empty-vacans></app-empty-vacans>-->
+    <app-vacans-right *ngIf="adverts.length > 0" [adverts]="adverts"></app-vacans-right>
+    <app-empty-vacans *ngIf="adverts.length === 0"></app-empty-vacans>
   </div>
 </div>
