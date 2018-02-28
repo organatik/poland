@@ -17,8 +17,8 @@ export class LeftBarChatComponent implements OnInit {
     // this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
     // answers[0].answer.  description answerer_id
     for(let item of this.users){
-      console.log(item.answers[0].answer.description)
-      console.log(item.answers[0].answer.answerer_id)
+      console.log(item.answers[0].advert.description)
+      console.log(item.answers[0].advert.adverter_id)
     }
   }
   newSelectedItem(obj) {
