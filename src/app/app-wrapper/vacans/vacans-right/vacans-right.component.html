@@ -1,6 +1,42 @@
 <div class="col-md-9 wrapper">
   <div class="col-md-12 header">
-
+    <div class="dropdawn-wrap">
+      <button (click)="showDropdawn = !showDropdawn" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawn}">
+         <span>
+            <span>
+                Все вакансии
+              </span>
+              <span>
+                (2)
+              </span>
+         </span>
+         <i class="fa fa-angle-down"></i>
+       </button>
+       <div *ngIf = "showDropdawn" class="dropdawn-btn">
+          <ul>
+            <li>Все вакансии на сегодня 
+              <span>
+                (2)
+              </span>
+            </li>
+            <li>Все вакансии на неделю 
+              <span>
+                (2)
+              </span>
+            </li>
+            <li>Все выполненые заказы 
+              <span>
+                (2)
+              </span>
+            </li>
+            <li>Фриланс
+              <span>
+                (2)
+              </span>
+            </li>
+          </ul>
+      </div>
+   </div>
   </div>
     <div class="col-md-12 wrapper-body">
       <app-item-vacans *ngFor="let advert of adverts" [advert]="advert" [profile]="profile"></app-item-vacans>

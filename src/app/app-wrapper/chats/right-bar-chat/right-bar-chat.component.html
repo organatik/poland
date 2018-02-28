@@ -19,12 +19,15 @@
           <p *ngIf="selectedItem.another_user.country"><span>Страна</span> {{ selectedItem.another_user.country }}</p>
       </div>
       <p *ngIf="selectedItem.another_user.education"><span>Образование</span> {{ selectedItem.another_user.education }}</p>
-      <!-- <p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p> -->
+      <p><span>О себе:</span> 
+        <!-- {{ users[selectedItem].aboutme }} -->
+        {{selectedItem.answers[0].advert.description}}
+      </p>
     </div>
     <div class="col-md-12 vacans">
       <h5>Вакансия:</h5>
       <img src="../../../../assets/images.jpeg" alt="">
-      <p>{{selectedItem.answers[0].advert.description}}</p>
+      <!-- <p>{{selectedItem.answers[0].advert.description}}</p> -->
     </div>
   </div>
 </div>

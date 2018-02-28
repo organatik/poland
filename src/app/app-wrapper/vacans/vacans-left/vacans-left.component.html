@@ -1,7 +1,21 @@
-<div class="col-md-3 wrapper">
+<div class="col-md-3 wrapper" style="position:relative">
+  <div *ngIf = "sabmitPage" class="sabmit-page">
+      <div class="text-sabmit">
+        Подтверждаете публикацию вакансии?
+      </div>
+      <button>
+        Да
+      </button>
+      <button (click)="sabmitPage = !sabmitPage">
+        Отменить
+      </button>
+  </div>
   <div class="row">
     <div class="col-md-12 header">
       <p>Кого вы ищите ?</p>
+      <button (click)="sabmitPage = !sabmitPage" class="submit">
+        Разместить
+      </button>
     </div>
   </div>
   <div class="row">
@@ -13,12 +27,28 @@
         </div>
         <div class="col-md-9">
           <p style="font-weight: bold;" *ngIf="profile && profile.name">{{profile.name}}</p>
-          <select [(ngModel)]='advert.vacancy.hiring_type'>
+          <div class="dropdawn-wrap">
+            <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}" [(ngModel)]='advert.vacancy.hiring_type'>
+               <span>
+                 Вакансии ХХХХ
+               </span>
+               <i class="fa fa-angle-down"></i>
+             </button>
+             <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
+                 <ul>
+                   <li><a href="#" value="0">FULL TIME</a></li>
+                   <li><a href="#" value="1">PART_TIME</a></li>
+                   <li><a href="#" value="2">CONTRACT</a></li>
+                   <li><a href="#" value="3">ONE_TIME</a></li>
+                 </ul>
+             </div>
+         </div>
+          <!-- <select [(ngModel)]='advert.vacancy.hiring_type'>
             <option value="0">FULL TIME</option>
             <option value="1">PART_TIME </option>
             <option value="2">CONTRACT  </option>
             <option value="3">ONE_TIME  </option>
-          </select>
+          </select> -->
         </div>
       </div>
     </div>
@@ -82,7 +112,7 @@
         <input type="text" placeholder="Введите хеш-теги..." [(ngModel)]='teg'>
       </p>
       <p>
-        <i class="fa fa-map-marker" style="margin-right: 14px;" aria-hidden="true"></i>
+        <i class="fa fa-map-marker" style="margin-right: 18px;" aria-hidden="true"></i>
         <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.location'>
       </p>
       <button (click)="create()">Добавить вакансию</button>
