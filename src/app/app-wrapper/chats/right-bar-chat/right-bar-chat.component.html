@@ -1,4 +1,4 @@
-<div class="col-md-3 wrapper" *ngIf="selectedItem">
+<div class="col-md-3 col-lg-2 wrapper" *ngIf="selectedItem">
   <div class="row">
     <div class="col-md-12 header-photo">
       <img  *ngIf="!selectedItem.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
@@ -19,7 +19,7 @@
           <p *ngIf="selectedItem.another_user.country"><span>Страна</span> {{ selectedItem.another_user.country }}</p>
       </div>
       <p *ngIf="selectedItem.another_user.education"><span>Образование</span> {{ selectedItem.another_user.education }}</p>
-      <p><span>О себе:</span> 
+      <p><span>О себе:</span>
         <!-- {{ users[selectedItem].aboutme }} -->
         {{selectedItem.answers[0].advert.description}}
       </p>
