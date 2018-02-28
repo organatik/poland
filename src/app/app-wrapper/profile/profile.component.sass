@@ -1,32 +1,59 @@
 .wrapper
   padding: 30px
-  border-bottom: 2px solid #E3E3E5
+  height: calc(100vh - 78px)
+  background-color: #f6f7fa
   .info
     padding-left: 50px
+    input
+      background: transparent
+      border-radius: 25px
     p, .skills
       span
-        display: block
         &:first-child
           font-weight: bold
+          display: block
+          float: left
+          width: 12%
+          text-align: right
+          padding-right: 10px
+
+
 
   .controls
     margin-top: 50px
     button
-      width: 200px
-      text-align: center
-      padding: 20px
-      outline: none
       background-color: #0c86f9
+      outline: none
       color: white
+      padding: 15px 35px
+      border-radius: 30px
+      margin-top: 20px
+      box-shadow: 0px 4px 11px 0px #080808
+      &:hover
+        background-color: #1277f9
+
 .form-control
   width: 20%
   margin-left: 5px
   display: inline-block
 .skills
+  button
+    background-color: #0c86f9
+    outline: none
+    color: white
+    padding: 5px 15px
+    border-radius: 30px
+    margin-top: 20px
+    box-shadow: 0px 4px 11px 0px #080808
+    &:hover
+      background-color: #1277f9
   i
     cursor: pointer
+    color: red
   ol
-    padding-left: 22px
+    padding-left: 152px
+    padding-top: 21px
   input
+    background: transparent
     margin: 15px 0
 
