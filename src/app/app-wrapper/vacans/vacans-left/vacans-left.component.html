@@ -3,7 +3,7 @@
       <div class="text-sabmit">
         Подтверждаете публикацию вакансии?
       </div>
-      <button>
+      <button (click)="create()">
         Да
       </button>
       <button (click)="sabmitPage = !sabmitPage">
@@ -115,7 +115,7 @@
         <i class="fa fa-map-marker" style="margin-right: 18px;" aria-hidden="true"></i>
         <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.location'>
       </p>
-      <button (click)="create()">Добавить вакансию</button>
+      <button (click)="sabmitPage = !sabmitPage">Добавить вакансию</button>
     </div>
   </div>
 </div>
