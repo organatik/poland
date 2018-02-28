@@ -1,16 +1,31 @@
 <div class="col-md-6 wrapper"  *ngIf="selectedItem">
   <div class="row">
     <div class="col-md-12 header">
-      <span>Чат с {{selectedItem.another_user.name }}</span>
-      <span>
+      <span class="contact">Чат с {{selectedItem.another_user.name }}</span>
+      <span class="online-status">
         <i class="fa fa-circle" aria-hidden="true"></i>
         В сети
       </span>
-      <select class="pull-right">
+      <div class="dropdawn-wrap pull-right">
+          <button (click)="showDropdawn = !showDropdawn" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawn}">
+            <span style="margin: 0; margin-top: 4px;">
+              Вакансии ХХХХ              
+            </span>
+            <i class="fa fa-angle-down"></i>
+          </button>
+          <div *ngIf = "showDropdawn" class="dropdawn-btn">
+              <ul>
+                <li><a href="">Переводить на польский</a></li>
+                <li><a href="">Переводить на русский</a></li>
+                <li><a href="">Переводить на английский</a></li>
+              </ul>
+          </div>
+      </div>
+      <!-- <select class="pull-right">
         <option>Переводить на польский</option>
         <option>Переводить на русский</option>
         <option>Переводить на английский</option>
-      </select>
+      </select> -->
     </div>
   </div>
   <div class="row wrapper-chat">
@@ -27,7 +42,7 @@
               <img *ngIf="!profile.avatar_url" src="../../../../assets/images.jpeg" alt="Avatar">
             </span>
           </div>
-          <div class="col-md-11">
+          <div class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
             <p>{{item.chat_message.text}}</p>
           </div>
           <div *ngIf="item.author_id !== profile.user_id" class="col-md-1">
@@ -69,7 +84,7 @@
         <!--</div>-->
         <div class="col-md-12 my-msg" *ngIf="chatMessages.length < total_number_of_messages">
           <div class="col-md-12 read-more">
-            <button (click)="readMore()" class="btn btn-default">
+            <button (click)="readMore()" class="btn btn-default btn-more">
               Read more
               <i class="fa fa-caret-down" aria-hidden="true"></i>
             </button>
@@ -79,7 +94,7 @@
     </div>
   </div>
     <div class="col-md-12 chat-controls">
-      <i class="fa fa-question-circle" aria-hidden="true"></i>
+      <!-- <i class="fa fa-question-circle" aria-hidden="true"></i> -->
       <i class="fa fa-comments" aria-hidden="true"></i>
       <span>Сергей печатает...</span>
       <input placeholder="Введите текст..." type="text">

@@ -1,9 +1,6 @@
 .wrapper
-  border-right: 2px solid #E3E3E5
   height: calc(100vh - 78px)
   max-height: calc(100vh - 78px)
-  overflow-y: scroll
-  overflow-y: hidden
   .wrapper-chat
     -webkit-box-shadow: inset 0px 5px 40px -14px rgba(0,0,0,0.75)
     -moz-box-shadow: inset 0px 5px 40px -14px rgba(0,0,0,0.75)
@@ -11,11 +8,13 @@
   .body-chat
     height: 65vh
     max-height: 65vh
-    overflow-y: scroll
     padding: 20px 0
-    overflow-x: hidden
     background-color: #f6f7fa
-    z-index: -1
+    z-index: 0
+    box-shadow: inset 8px 8px 15px -10px rgba(0,0,0,0.75), inset -8px 3px 9px -10px rgba(0,0,0,0.75)
+    padding-right: 5px
+    overflow-x: hidden    
+    overflow-y: hidden    
     .avatar
       padding-top: 4px
       display: block
@@ -28,27 +27,35 @@
       p
         background-color: #5584ff
         padding: 10px 20px
-        border-radius: 20px
+        border-radius: 15px
         color: white
         width: 100%
         margin-bottom: 0
+        min-height: 40px
+        font-weight: bold
       .pull-right
         margin-right: 18px
         color: #a9a9a9
         display: inline-block
         margin-top: 5px
+        font-weight: bold
+        font-size: 12px
     .my-msg
       margin-bottom: 25px
+
       p
         padding: 10px 20px
-        border-radius: 20px
+        border-radius: 15px
         background-color: #5584ff
         color: white
         width: 50%
         margin-bottom: 0
-
+        font-weight: bold
+        min-height: 40px
+  .body-chat:hover
+    overflow-y: scroll
+    padding-right: 0px    
   .header
-    border-bottom: 2px solid #E3E3E5
     padding: 10px
     z-index: 1
     background-color: #ffffff
@@ -76,20 +83,27 @@
   .chat-controls
     background-color: #f6f7fa
     padding: 30px 10px
+    box-shadow: inset 8px -7px 15px -10px rgba(0,0,0,0.75), inset -8px 3px 9px -10px rgba(0,0,0,0.75)
+    padding-top: 0
     i
       font-size: 25px
       &:first-child
         position: absolute
-        right: 90px
-        top: 76px
+        right: 40px
+        top: 46px
+        color: rgb(73, 74, 76)
       &:nth-child(2)
         position: absolute
-        top: 76px
+        top: 48px
         right: 40px
+        color: rgb(73, 74, 76)
     span
       display: inline-block
       margin: 0 0 8px 24px
       color: #a9a9a9
+      color: rgba(186, 188, 188, 1)
+      font-weight: bold
+      font-size: 13px
     p
       border-bottom: 2px solid #E3E3E5
       padding: 7px
@@ -115,3 +129,107 @@
   button
     margin-top: 10px
     outline: none
+.dropdawn-wrap
+  position: relative
+  width: 55%
+  margin-right: 15px
+.btn-left-sidebar
+  border: 1px solid rgb(232, 235, 241) 
+  background: none
+  outline: none
+  border-radius: 20px
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding-left: 20px
+  padding-right: 20px
+  color: rgba(111, 115, 117, 1)
+  font-size: 13PX
+  height: 36px
+  padding-bottom: 5px
+  i
+    transition: all 0.2s
+    font-size: 16px
+    position: relative
+.active-btn
+  border-radius: 20px 20px 0 0
+  i
+    transform: rotate(180deg)
+.dropdawn-btn
+  background: white
+  width: 100%
+  position: absolute
+  top: 36px
+  z-index: 1000
+  border-radius: 0 0 20px 20px
+  overflow: hidden
+  -webkit-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  -moz-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  border: 1px solid rgb(232, 235, 241) 
+  border-top: 0
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    li
+      padding: 0
+      margin: 0
+      a
+        width: 100%
+        display: block
+        color: rgba(111, 115, 117, 1)
+        text-decoration: none
+        padding: 7px
+        padding-left: 20px
+      a:hover
+        background: #f1f1f1
+.contact
+  position: relative
+  top: 7px
+  font-size: 13px
+  font-weight: bold
+  color: rgba(139, 142, 144, 1) !important
+.online-status
+  position: relative
+  top: 7px
+  font-size: 13px
+  font-weight: bold
+
+.btn-more
+  background: #5584ff
+  color: white
+  font-weight: bold
+  outline: none
+.btn-more:active
+  background: #3766e0
+  color: white
+  
+.body-chat::-webkit-scrollbar-thumb
+  height: 5px 
+.body-chat::-webkit-scrollbar-track
+  background-color: rgba(255, 255, 255, 0)
+.body-chat::-webkit-scrollbar
+  width: 5px
+  background-color: rgba(255, 255, 255, 0)
+.body-chat::-webkit-scrollbar-thumb
+  background-color: #d0d0d0
+  border-radius: 50px
+  height: 2px
+  margin: 3px
+
+
+input::-webkit-input-placeholder 
+  color: rgba(95, 96, 98, 1)
+  font-weight: bold
+input::-moz-placeholder 
+  font-weight: bold
+  color: rgba(95, 96, 98, 1)
+input:-ms-input-placeholder
+  font-weight: bold
+  color: rgba(95, 96, 98, 1)
+input:-moz-placeholder
+  font-weight: bold
+  color: rgba(95, 96, 98, 1)
+  

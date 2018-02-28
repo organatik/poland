@@ -6,10 +6,20 @@
     </div>
     <div class="col-md-12 info">
       <p>{{ selectedItem.another_user.name }} </p>
-      <p *ngIf="selectedItem.another_user.country"><span>Страна:</span> {{ selectedItem.another_user.country }}</p>
-      <p *ngIf="selectedItem.another_user.birth_date"><span>Возрвст:</span> {{ calculateAge(selectedItem.another_user.birth_date) }}</p>
-      <p *ngIf="selectedItem.another_user.education"><span>Образование:</span> {{ selectedItem.another_user.education }}</p>
-      <!--<p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p>-->
+      <div class="call-wrap">
+        <button>
+            <i class="fa fa-phone"></i>
+        </button>
+        <span>
+          23:23
+        </span>
+      </div>
+      <div class="age-country-line">
+          <p *ngIf="selectedItem.another_user.birth_date" style="margin-right: 40px;" class="age"><span>Возраст</span> {{ calculateAge(selectedItem.another_user.birth_date) }}</p>
+          <p *ngIf="selectedItem.another_user.country"><span>Страна</span> {{ selectedItem.another_user.country }}</p>
+      </div>
+      <p *ngIf="selectedItem.another_user.education"><span>Образование</span> {{ selectedItem.another_user.education }}</p>
+      <!-- <p><span>О себе:</span> {{ users[selectedItem].aboutme }}</p> -->
     </div>
     <div class="col-md-12 vacans">
       <h5>Вакансия:</h5>

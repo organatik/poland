@@ -3,6 +3,19 @@ import {SelectedItemService} from "../../../selected-item.service";
 import {ChatService} from "../../../shared/service/chat.service";
 import {ProfileService} from "../../../shared/service/profile.service";
 
+// const translate = require('google-translate-api');
+
+// import translate from 'google-translate-api';
+//
+// translate('Ik spreek Engels', {to: 'en'}).then(res => {
+//   console.log(res.text);
+//   //=> I speak English
+//   console.log(res.from.language.iso);
+//   //=> nl
+// }).catch(err => {
+//   console.error(err);
+// });
+
 @Component({
   selector: 'app-middle-chat',
   templateUrl: './middle-chat.component.html',
