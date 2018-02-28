@@ -2,14 +2,18 @@
   <div class="row">
     <div class="col-md-12 header">
       <span class="contact">Чат с {{selectedItem.another_user.name }}</span>
-      <span class="online-status">
+      <span class="online-status green-on" *ngIf="res && res.answers && res.answers[0].answerer.online">
         <i class="fa fa-circle" aria-hidden="true"></i>
         В сети
+      </span>
+      <span class="online-status red-off" *ngIf="res && res.answers && !res.answers[0].answerer.online">
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        Не в сети
       </span>
       <div class="dropdawn-wrap pull-right">
           <button (click)="showDropdawn = !showDropdawn" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawn}">
             <span style="margin: 0; margin-top: 4px;">
-              Вакансии ХХХХ              
+              Вакансии ХХХХ
             </span>
             <i class="fa fa-angle-down"></i>
           </button>
@@ -29,7 +33,7 @@
     </div>
   </div>
   <div class="row wrapper-chat">
-    <div class="col-md-12 body-chat">
+    <div class="col-md-12 body-chat" id="body-chat">
       <!-- <div class="">
         <div class="col-md-12 my-msg">
           <div class="col-md-1"> -->
@@ -44,6 +48,7 @@
           </div>
           <div class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
             <p>{{item.chat_message.text}}</p>
+            <span *ngIf="item.author_id === profile.user_id">Прочитано</span>
           </div>
           <div *ngIf="item.author_id !== profile.user_id" class="col-md-1">
             <span class="avatar">
@@ -53,51 +58,31 @@
           </div>
         </div>
         <div class="col-md-12 msg-to-you ">
-          <div class="col-md-6 col-md-offset-5">
-            <p>Привет! Все окей ! Вылетаю!</p>
-            <span class="pull-right">Прочитано</span>
-          </div>
-          <div class="col-md-1">
-            <span class="avatar">
-              <img src="../../../../assets/avatar.png" alt="Avatar">
-            </span>
-          </div>
-        <!--<div class="col-md-12 msg-to-you">-->
-          <!--<div class="col-md-1">-->
-            <!--<span class="avatar">-->
-              <!--<img src="../../../../assets/images.jpeg" alt="Avatar">-->
-            <!--</span>-->
-          <!--</div>-->
-          <!--<div class="col-md-11">-->
-            <!--<p>Привет!! Как дела?Пойдешь работать?</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-md-12 my-msg">-->
-          <!--<div class="col-md-10">-->
+          <!--<div class="col-md-6 col-md-offset-5">-->
             <!--<p>Привет! Все окей ! Вылетаю!</p>-->
+            <!--<span class="pull-right">Прочитано</span>-->
           <!--</div>-->
-          <!--<div class="col-md-2">-->
+          <!--<div class="col-md-1">-->
             <!--<span class="avatar">-->
               <!--<img src="../../../../assets/avatar.png" alt="Avatar">-->
             <!--</span>-->
           <!--</div>-->
+        <!--<div class="col-md-12 my-msg" *ngIf="chatMessages.length < total_number_of_messages">-->
+          <!--<div class="col-md-12 read-more">-->
+            <!--<button (click)="readMore()" class="btn btn-default btn-more">-->
+              <!--Read more-->
+              <!--<i class="fa fa-caret-down" aria-hidden="true"></i>-->
+            <!--</button>-->
+          <!--</div>-->
         <!--</div>-->
-        <div class="col-md-12 my-msg" *ngIf="chatMessages.length < total_number_of_messages">
-          <div class="col-md-12 read-more">
-            <button (click)="readMore()" class="btn btn-default btn-more">
-              Read more
-              <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
     <div class="col-md-12 chat-controls">
       <!-- <i class="fa fa-question-circle" aria-hidden="true"></i> -->
-      <i class="fa fa-comments" aria-hidden="true"></i>
+      <i (click)="send()" class="fa fa-comments" aria-hidden="true"></i>
       <span>Сергей печатает...</span>
-      <input placeholder="Введите текст..." type="text">
+      <input placeholder="Введите текст..." type="text" [(ngModel)]="selectedText">
     </div>
   </div>
 </div>

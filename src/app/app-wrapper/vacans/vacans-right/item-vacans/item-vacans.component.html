@@ -8,12 +8,12 @@
         </div>
         <div class="col-md-9" style="padding: 10px;">
           <p>
-            <span style="font-weight: bold">{{profile.name}}</span>
+            <span style="font-weight: bold" *ngIf="profile">{{profile.name}}</span>
             разместил вакансию от компании
           </p>
         </div>
         <div class="col-md-12 status">
-          <p>
+          <p *ngIf="advert.active">
             <!--<i class="fa fa-minus-circle" style="color: red" aria-hidden="true"></i>-->
             <!--Вакансия снята-->
             <i class="fa fa-check-circle" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
           </p>
           <p>
             <i class="fa fa-map-marker" style="margin-right: 14px;" aria-hidden="true"></i>
-            <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.location'>
+            <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.advert.location'>
           </p>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <div class="col-md-12 statistic">
           <div class="row">
             <div class="col-md-6">
-              <span style="padding-top: 10px;" class="col-md-6">{{advert.answers_number}}</span>
+              <span style="padding-top: 10px;" class="col-md-6">{{advert.views_number}}</span>
               <span class="col-md-6">Просмотра вакансии</span>
             </div>
             <div class="col-md-6" style="padding-top: 10px;">

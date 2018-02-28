@@ -7,36 +7,18 @@ import {ChatService} from "../../../shared/service/chat.service";
   styleUrls: ['./chat-wrapper.component.sass']
 })
 export class ChatWrapperComponent implements OnInit {
-  chatsUser = [
-    {
-      name: 'Anton',
-      surname: 'Pupkin',
-      age: 25,
-      time: '22:55',
-      country: 'Ukraine',
-      lastMessage: 'Hello! How are you?',
-      avatarUrl: '../../../../assets/avatar.png',
-      rating: '★★★☆☆',
-      education: 'Высшее техническое',
-      aboutme: 'Сварщик 3-го разряда'
-    },
-    {
-      name: 'Anton',
-      surname: 'Pupkin',
-      age: 25,
-      time: '22:55',
-      country: 'Ukraine',
-      lastMessage: 'Hello! How are you?',
-      avatarUrl: '../../../../assets/avatar.png',
-      rating: '★★★☆☆',
-      education: 'Высшее техническое',
-      aboutme: 'Сварщик 3-го разряда'
-    },
-  ];
+  chatsUser;
   constructor(private chatService: ChatService) {
     this.chatService.myChats().subscribe((data: any) => {
       console.log(data);
-      this.chatsUser = data.chats;
+
+      this.chatsUser = data.chats.sort(function(a: any, b: any){
+        if(!b.last_message && !a.last_message)
+          return  0;
+        if (!a.last_message)    return 1;
+        else if(!b.last_message) return  0;
+         return +new Date(b['last_message']['chat_message']['time']) - +new Date(a['last_message']['chat_message']['time']);
+      });
     });
   }
   ngOnInit() {
