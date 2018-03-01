@@ -21,6 +21,7 @@ export class VacansService {
   getVac(){
     let obj = this.authGuard.getCredentials();
     obj.target_id = obj.user_id;
+    obj.also_closed = true;
     return this.http.post(apiUrl + 'user-adverts', obj);
   }
   closeVac(advert){
@@ -32,4 +33,12 @@ export class VacansService {
     return this.http.post(apiUrl + 'close-advert', this.authGuard.getCredentials());
   }
 
+  removeVac(advert){
+    console.log(advert)
+    let obj = this.authGuard.getCredentials();
+    obj.advert_id = advert.advert_id;
+    // obj.location = advert.advert.location ||  "";
+
+    return this.http.post(apiUrl + 'remove-advert', this.authGuard.getCredentials());
+  }
 }

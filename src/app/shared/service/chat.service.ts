@@ -29,5 +29,9 @@ export class ChatService {
     obj.text = text;
     return this.http.post(apiUrl + 'chat-send', obj);
   }
+
+  translate(value: any){
+    return this.http.get('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBQm-GsYFNWbQciETrTi4P4lZN1gxCJmNc&source=RU&target=PL&q='+ value)
+  }
 }
 

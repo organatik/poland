@@ -4,16 +4,14 @@
       <div class="dropdawn-wrap">
          <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}">
             <span>
-              Вакансии ХХХХ
+              {{lable}}
             </span>
             <i class="fa fa-angle-down"></i>
           </button>
           <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
               <ul>
-                <li><a href="">some content</a></li>
-                <li><a href="">some content</a></li>
-                <li><a href="">some content</a></li>
-                <li><a href="">some content</a></li>
+                <li (click)="sortBy('all'); lable = 'Все';showDropdawnLeft = false"><a>Все</a></li>
+                <li *ngFor="let item of keys" (click)="sortBy(item); lable = item;showDropdawnLeft = false"><a>{{item}}</a></li>
               </ul>
           </div>
       </div>
@@ -21,8 +19,8 @@
   </div>
   <div class="row">
     <div class="col-md-12 body">
-      <div *ngIf="users">
-      <div class="row wrapper-msg" *ngFor="let obj of users;let i = index" (click)="newSelectedItem(obj)"  [class.active]="selectedItem.answers && obj.answers && obj.answers[0].answer_id === selectedItem.answers[0].answer_id" >
+      <div *ngIf="usersCopy">
+      <div class="row wrapper-msg" *ngFor="let obj of usersCopy;let i = index" (click)="newSelectedItem(obj)"  [class.active]="selectedItem.answers && obj.answers && obj.answers[0].answer_id === selectedItem.answers[0].answer_id" >
         <div class="col-md-2 photo">
           <span class="avatar">
             <img *ngIf="obj.another_user && obj.another_user.avatar_url" [src]="obj.another_user.avatar_url" alt="Avatar">

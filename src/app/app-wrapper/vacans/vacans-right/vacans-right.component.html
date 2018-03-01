@@ -4,34 +4,39 @@
       <button (click)="showDropdawn = !showDropdawn" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawn}">
          <span>
             <span>
-                Все вакансии
+                {{label}}
               </span>
               <span>
-                (2)
+                ({{advertsObj.length}})
               </span>
          </span>
          <i class="fa fa-angle-down"></i>
        </button>
        <div *ngIf = "showDropdawn" class="dropdawn-btn">
           <ul>
-            <li>Все вакансии на сегодня 
+            <li (click)="advertsObj = adverts;showDropdawn = false;label = 'Все вакансии за сегодня'">Все вакансии за сегодня
               <span>
-                (2)
+                ({{adverts.length}})
               </span>
             </li>
-            <li>Все вакансии на неделю 
+            <li (click)="advertsObj = today;showDropdawn = false;label = 'Все вакансии за сегодня'">Все вакансии за сегодня
               <span>
-                (2)
+                ({{today.length}})
               </span>
             </li>
-            <li>Все выполненые заказы 
+            <li (click)="advertsObj = thisMonth;showDropdawn = false;label = 'Все вакансии за месяц'">Все вакансии за месяц
               <span>
-                (2)
+                ({{thisMonth.length}})
+              </span>
+            </li>
+            <li>Все выполненые заказы
+              <span>
+                (0)
               </span>
             </li>
             <li>Фриланс
               <span>
-                (2)
+                (0)
               </span>
             </li>
           </ul>
@@ -39,6 +44,6 @@
    </div>
   </div>
     <div class="col-md-12 wrapper-body">
-      <app-item-vacans *ngFor="let advert of adverts" [advert]="advert" [profile]="profile"></app-item-vacans>
+      <app-item-vacans *ngFor="let advert of advertsObj" [advert]="advert" [profile]="profile"></app-item-vacans>
     </div>
 </div>

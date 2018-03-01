@@ -57,8 +57,8 @@
         <div class="col-md-12 controls">
           <!--<button (click)="remove()">Убрать</button>-->
           <!--<button>Поднять в топ</button>-->
-          <button>Закрыть вакансию</button>
-          <!--<button style="background-color: #f83c7b">Удалить</button>-->
+          <button *ngIf="!advert.advert.close_time" (click)="close()">Закрыть вакансию</button>
+          <button *ngIf="advert.advert.close_time" (click)="remove()" style="background-color: #f83c7b">Удалить</button>
         </div>
       </div>
     </div>

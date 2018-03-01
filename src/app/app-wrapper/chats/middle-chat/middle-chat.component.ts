@@ -1,32 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {ApplicationRef, Component, OnInit} from '@angular/core';
 import {SelectedItemService} from "../../../selected-item.service";
 import {ChatService} from "../../../shared/service/chat.service";
 import {ProfileService} from "../../../shared/service/profile.service";
+import {AuthGuard} from "../../../shared/service/guard.service";
 declare var  $;
+
 var ws = new WebSocket("wss://chatchatchat.ml/ws-api/", "protocolOne");
-var ws1 = new WebSocket("wss://chatchatchat.ml/ws-api/local-chat-listen");
-var ws2 = new WebSocket("wss://chatchatchat.ml/ws-api/global-chat-listen");
-
 var callbacks = {};
-
-ws2.onmessage = function(e) {
-  console.log(e.data);
-  var m = JSON.parse(e.data);
-  callbacks[m.id](JSON.parse(m.payload));
-  delete callbacks[m.id];
-};
-ws1.onmessage = function(e) {
-  console.log(e.data);
-  var m = JSON.parse(e.data);
-  callbacks[m.id](JSON.parse(m.payload));
-  delete callbacks[m.id];
-};
 ws.onmessage = function(e) {
-  console.log(e.data);
   var m = JSON.parse(e.data);
   callbacks[m.id](JSON.parse(m.payload));
   delete callbacks[m.id];
-};
+}
 var call = function(path, msg, callback) {
   var id = 'r' + Math.random();
   callbacks[id] = callback;
@@ -44,6 +29,7 @@ var call = function(path, msg, callback) {
 })
 export class MiddleChatComponent implements OnInit {
   selectedItem: any;
+  reload = true;
 
   messages = [
     'Приежайте на роботу!',
@@ -60,26 +46,12 @@ export class MiddleChatComponent implements OnInit {
     this.selectedText = this.messages[index];
   }
 
-  constructor(private item: SelectedItemService, private chatService: ChatService, private profileService: ProfileService) {
+  constructor(private item: SelectedItemService, private chatService: ChatService, private profileService: ProfileService,
+              private authGuard: AuthGuard, private applicationRef: ApplicationRef) {
     this.item.changeEvent.subscribe(selectedItem => {
       this.selectedItem = selectedItem;
       this.getChatData();
 
-      // setTimeout(() => {
-      //   console.log(this.selectedItem)
-      //   call("local-chat-listen", {}, function(res) {
-      //     alert(res.text);
-      //   });
-      //   call("local-chat-listen", {
-      //       session_id: this.profile.session_id,
-      //       user_id: this.profile.user_id,
-      //       another_user_id: this.selectedItem.another_user.user_id,
-      //       // rev: this.profile
-      //     }
-      //     , function(res) {
-      //       alert(res.text);
-      //     });
-      // }, 5222);
     });
 
     this.profileService.getProfile().subscribe((data: any) => {
@@ -87,7 +59,9 @@ export class MiddleChatComponent implements OnInit {
       console.log(this.profile)
     })
   }
-
+  user_id;
+  answereruser_id;
+  session_id;
   ngOnInit() {
 
     // setInterval(() => {
@@ -97,15 +71,52 @@ export class MiddleChatComponent implements OnInit {
   older_messages_token;
   canRead = true;
   total_number_of_messages;
+  typing_event_state = {
+    type: 'NOT_TYPING'
+  };
+  localChatListen(rev){
+    call("local-chat-listen",
+      {
+        "session_id" : this.session_id,
+        "user_id" : this.user_id,
+        "another_user_id": this.answereruser_id,
+        "rev": rev
+      }
+      , (res) => {
+        for(let item of res.events){
+          if(item.typing_event){
+            this.typing_event_state.type = item.typing_event.state;
+            this.applicationRef.tick()
+
+          }
+          if(item.new_message){
+            this.getChatData();
+
+          }
+        }
+        // events[0].typing_event.state === "NOT_TYPING"
+        this.localChatListen(res.rev);
+      });
+  }
+
   getChatData(){
+    this.reload = false;
     if(this.selectedItem)
     this.chatService.chatInfo(this.selectedItem.another_user.user_id).subscribe((res: any) => {
       this.chatMessagesNoRevert = res.chat_messages.slice();
       this.chatMessages = res.chat_messages.reverse().slice();
-      console.log(res);
+      console.log(res, this.profile);
+      let g =this.authGuard.getCredentials();
+
+      this.user_id = g.user_id;
+      this.session_id = g.session_id;
+      this.answereruser_id = res.answers[0].answerer.user_id;
+      this.localChatListen(res.rev);
       this.res = res;
       this.older_messages_token = res.older_messages_token;
       this.total_number_of_messages   = res.total_number_of_messages;
+      this.reload = true;
+
       setTimeout(() => {
         document.getElementById('body-chat').scrollBy(0, 500);
         $('#body-chat').scroll(() => {
@@ -136,5 +147,15 @@ export class MiddleChatComponent implements OnInit {
        this.getChatData();
         this.selectedText = "";
       });
+  }
+
+  translate(){
+    // for(let item: any of this.chatMessages){
+    //   this.chatService.translate(item.chat_message.text).subscribe((data: any)=> {
+    //     if(data.data.translations && data.data.translations[0])
+    //     console.log(data.data.translations[0].translatedText)
+    //   });
+    // }
+
   }
 }

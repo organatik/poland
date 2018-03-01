@@ -25,6 +25,7 @@ import {ProfileService} from "./shared/service/profile.service";
 import {VacansService} from "./shared/service/vacans.service";
 import { EmptyChatComponent } from './app-wrapper/chats/empty-chat/empty-chat.component';
 import { EmptyVacansComponent } from './app-wrapper/vacans/empty-vacans/empty-vacans.component';
+import {TranslatePipe} from "./shared/translate";
 
 
 @NgModule({
@@ -44,7 +45,9 @@ import { EmptyVacansComponent } from './app-wrapper/vacans/empty-vacans/empty-va
     ProfileComponent,
     EmptyChatComponent,
     EmptyVacansComponent,
+    TranslatePipe
   ],
+  exports: [TranslatePipe],
   imports: [
     BrowserModule,
     ROUTING,

@@ -1,14 +1,20 @@
 <div class="col-md-3 wrapper" style="position:relative">
+  <div *ngIf = "showSpiner" class="sabmit-page">
+    <div class="spiner-wrap">
+        <i class="fa fa-spinner fa-spin" style="font-size: 60px; color: white;"></i>
+        <i class="fa fa-spinner fa-spin small-spiner" style=""></i>
+    </div>
+  </div>
   <div *ngIf = "sabmitPage" class="sabmit-page">
-      <div class="text-sabmit">
-        Подтверждаете публикацию вакансии?
-      </div>
-      <button (click)="create()">
-        Да
-      </button>
-      <button (click)="sabmitPage = !sabmitPage">
-        Отменить
-      </button>
+    <div class="text-sabmit">
+      Подтверждаете публикацию вакансии?
+    </div>
+    <button class="btn-sabmit-page " (click)="create()">
+      Да
+    </button>
+    <button class="btn-cancel btn-sabmit-page" (click)="sabmitPage = !sabmitPage">
+      Отменить
+    </button>
   </div>
   <div class="row">
     <div class="col-md-12 header">
@@ -28,18 +34,27 @@
         <div class="col-md-9">
           <p style="font-weight: bold;" *ngIf="profile && profile.name">{{profile.name}}</p>
           <div class="dropdawn-wrap">
-            <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}" [(ngModel)]='advert.vacancy.hiring_type'>
-               <span>
-                 Вакансии ХХХХ
+            <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}" >
+               <span *ngIf="+advert.vacancy.hiring_type === 0">
+                 FULL TIME
+               </span>
+              <span *ngIf="+advert.vacancy.hiring_type === 1">
+                 PART_TIME
+               </span>
+              <span *ngIf="+advert.vacancy.hiring_type === 2">
+                 CONTRACT
+               </span>
+              <span *ngIf="+advert.vacancy.hiring_type === 3">
+                 ONE_TIME
                </span>
                <i class="fa fa-angle-down"></i>
              </button>
              <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
                  <ul>
-                   <li><a href="#" value="0">FULL TIME</a></li>
-                   <li><a href="#" value="1">PART_TIME</a></li>
-                   <li><a href="#" value="2">CONTRACT</a></li>
-                   <li><a href="#" value="3">ONE_TIME</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 0;showDropdawnLeft = false"><a>FULL TIME</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 1;showDropdawnLeft = false"><a>PART_TIME</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 2;showDropdawnLeft = false"><a>CONTRACT</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 3;showDropdawnLeft = false"><a>ONE_TIME</a></li>
                  </ul>
              </div>
          </div>

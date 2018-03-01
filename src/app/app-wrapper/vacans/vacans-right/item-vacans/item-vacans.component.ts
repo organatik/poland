@@ -14,13 +14,21 @@ export class ItemVacansComponent implements OnInit {
   @Input() profile;
 
   ngOnInit() {
+
   }
 
   remove(){
-    this.vacansService.closeVac(this.advert).subscribe((data) => {
+    this.vacansService.removeVac(this.advert).subscribe((data) => {
       console.log(data);
       this.vacansService.refreshEvent.emit("");
     });
   }
 
+
+  close(){
+    this.vacansService.closeVac(this.advert).subscribe((data) => {
+      console.log(data);
+      this.vacansService.refreshEvent.emit("");
+    });
+  }
 }

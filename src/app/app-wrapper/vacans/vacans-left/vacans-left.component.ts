@@ -33,7 +33,8 @@ export class VacansLeftComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  showSpiner;
+  sabmitPage;
   create(){
     if(this.teg){
       let tegs = this.teg.split("#");
@@ -44,7 +45,13 @@ export class VacansLeftComponent implements OnInit {
     if(this.advert.description)
     this.vacansService.createVac(this.advert).subscribe((data) => {
       console.log(data);
+      this.showSpiner = true;
+      this.sabmitPage = false;
+      setTimeout(() => {
+        this.showSpiner = false;
+      }, 1000)
       this.vacansService.refreshEvent.emit("");
+      this.teg = '';
       this.advert = {
         adverter_id: "",
         location: "",

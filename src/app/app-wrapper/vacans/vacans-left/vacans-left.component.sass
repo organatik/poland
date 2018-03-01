@@ -1,10 +1,7 @@
 .wrapper
   border-right: 2px solid #E3E3E5
-  height: calc(100vh - 78px)
-  max-height: calc(100vh - 78px)
   background-color: #ffffff
-  overflow-y: auto
-  overflow-x: hidden
+  height: calc(100vh - 78px)
   .header
     background-color: #ffffff
     color: black
@@ -215,7 +212,7 @@ input:-moz-placeholder
     margin-bottom: 25px
     width: 80%
     text-align: center
-  button
+  .btn-sabmit-page
     margin-bottom: 13px
     background: rgb(85, 132, 255)
     border: none
@@ -227,19 +224,34 @@ input:-moz-placeholder
     font-weight: bold
     height: 40px
     box-shadow: 0px 2px 11px 0px #080808
-  button:nth-child(3)
+  .btn-cancel
     background: rgb(248, 60, 123)
-
+.small-spiner
+  position: absolute
+  top: 20px
+  right: 20px
+  color: white
+  font-size: 25px
+  
 @media screen and ( min-height: 813px )
   .info-vacans
     .photo
       height: 20vh!important
     textarea
       height: 20vh
-  .footer
-    position: absolute
-    bottom: 0
+  // .footer
+  //   position: absolute
+  //   bottom: 0
 @media screen and ( min-height: 913px )
   .info-vacans
     textarea
       margin-top: 15%!important
+
+@media (max-height: 786px)
+  .wrapper
+    height: 100%
+@media (min-height: 786px)
+  .wrapper
+    display: flex
+    flex-flow: column
+    justify-content: space-between
