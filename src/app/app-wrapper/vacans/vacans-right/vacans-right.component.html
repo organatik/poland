@@ -44,6 +44,8 @@
    </div>
   </div>
     <div class="col-md-12 wrapper-body">
-      <app-item-vacans *ngFor="let advert of advertsObj" [advert]="advert" [profile]="profile"></app-item-vacans>
+      <div class="row">
+        <app-item-vacans *ngFor="let advert of advertsObj" [advert]="advert" [profile]="profile"></app-item-vacans>
+      </div>
     </div>
 </div>
