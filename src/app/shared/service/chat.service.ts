@@ -30,6 +30,21 @@ export class ChatService {
     return this.http.post(apiUrl + 'chat-send', obj);
   }
 
+  UpdateDeliveryStatus(updates){
+    let obj = this.authGuard.getCredentials();
+    obj.updates = updates;
+    return this.http.post(apiUrl + 'update-delivery-status', obj);
+
+    //   string : session_id
+  //   string : user_id
+  //   updates: [
+  //     string : another_user_id
+  //   sint64 : last_delivered_id
+  //   sint64 : last_read_id
+  // ]
+
+  }
+
   translate(value: any){
     return this.http.get('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBQm-GsYFNWbQciETrTi4P4lZN1gxCJmNc&source=RU&target=PL&q='+ value)
   }

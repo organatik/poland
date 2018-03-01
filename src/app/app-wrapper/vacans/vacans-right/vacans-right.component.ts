@@ -18,7 +18,9 @@ export class VacansRightComponent implements OnInit {
   label = 'Все вакансии за сегодня';
 
   ngOnInit() {
-    this.advertsObj = this.adverts;
+    this.advertsObj = this.adverts.sort(function(a: any, b: any){
+      return +new Date(b['advert']['open_time']) - +new Date(a['advert']['open_time']);
+    });
     this.profileService.getProfile().subscribe((data: any) => {
       this.profile = data.profile;
       for(let item of this.adverts){

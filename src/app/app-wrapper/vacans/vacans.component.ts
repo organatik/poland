@@ -18,6 +18,7 @@ export class VacansComponent implements OnInit {
   ngOnInit() {
   }
   getData(){
+    this.adverts = [];
     this.vacansService.getVac().subscribe((data: any) => {
       console.log(data)
       this.adverts = data.adverts;

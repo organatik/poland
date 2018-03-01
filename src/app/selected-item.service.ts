@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class SelectedItemService {
 
- changeEvent = new EventEmitter();
+  changeEvent = new EventEmitter();
+  globalChange = new EventEmitter();
 
   constructor() { }
 

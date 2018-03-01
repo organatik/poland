@@ -1,6 +1,21 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {ApplicationRef, Component, Injectable, Input, OnInit} from '@angular/core';
 import {SelectedItemService} from '../../../selected-item.service';
-
+var ws = new WebSocket("wss://chatchatchat.ml/ws-api/", "protocolOne");
+var callbacks = {};
+ws.onmessage = function(e) {
+  var m = JSON.parse(e.data);
+  callbacks[m.id](JSON.parse(m.payload));
+  delete callbacks[m.id];
+}
+var call = function(path, msg, callback) {
+  var id = 'r' + Math.random();
+  callbacks[id] = callback;
+  ws.send(JSON.stringify({
+    id: id,
+    path: path,
+    payload: JSON.stringify(msg),
+  }));
+}
 @Component({
   selector: 'app-left-bar-chat',
   templateUrl: './left-bar-chat.component.html',
@@ -12,22 +27,33 @@ export class LeftBarChatComponent implements OnInit {
   usersCopy = [];
   selectedItem = {};
   epty = [{}, {},{},{},{}];
-  constructor( private item: SelectedItemService) { }
+  constructor( private item: SelectedItemService, private applicationRef: ApplicationRef) {
+    // item.globalChange.subscribe(()=>{
+    //   this.applicationRef.tick()
+    //   this.usersCopy = this.users.slice();
+    // })
+  }
   sort = {
 
   };
   keys = [];
   lable = 'Все';
   ngOnInit() {
+    setInterval(() => {
+      this.applicationRef.tick()
+      this.usersCopy = this.users.slice();
+
+    }, 2222);
     this.usersCopy = this.users.slice();
     // this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);
     // answers[0].answer.  description answerer_id
     for(let item of this.users){
       // console.log(item.answers[0].advert.description)
       // console.log(item.answers[0].answer.advert_id);
-      if(this.sort[item.answers[0].advert.description]){
+      if(item.answers[0] && item.answers[0].advert && this.sort[item.answers[0].advert.description]){
         this.sort[item.answers[0].advert.description] += 1;
       } else {
+        if(item.answers[0] && item.answers[0].advert)
         this.sort[item.answers[0].advert.description] = 1;
       }
     }
@@ -56,4 +82,21 @@ export class LeftBarChatComponent implements OnInit {
       return e.answers[0].advert.description === name;
     });
   }
+
+  // localChatListen(rev){
+  //   call("global-chat-listen",
+  //     {
+  //       "session_id" : this.obj.session_id,
+  //       "user_id" : this.obj.user_id,
+  //       "rev": rev
+  //     }
+  //     , (res) => {
+  //       console.log(res)
+  //       this.applicationRef.tick()
+  //
+  //
+  //       this.localChatListen(res.rev);
+  //     });
+  // }
+
 }

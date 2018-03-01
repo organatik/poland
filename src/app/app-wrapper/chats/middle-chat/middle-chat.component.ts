@@ -91,6 +91,15 @@ export class MiddleChatComponent implements OnInit {
           }
           if(item.new_message){
             this.getChatData();
+            let delivery =[]
+                delivery.push({
+                  last_read_id: item.new_message.message_id,
+                  another_user_id: this.selectedItem.another_user.user_id
+                })
+            if(delivery.length)
+              this.chatService.UpdateDeliveryStatus(delivery).subscribe(()=>{            this.applicationRef.tick()
+              });
+            this.applicationRef.tick()
 
           }
         }
@@ -103,6 +112,25 @@ export class MiddleChatComponent implements OnInit {
     this.reload = false;
     if(this.selectedItem)
     this.chatService.chatInfo(this.selectedItem.another_user.user_id).subscribe((res: any) => {
+      let delivery =[];
+      let id = 0;
+      for(let item of res.chat_messages){
+          if(id < item.message_id){
+            id = item.message_id;
+          }
+      }
+
+      delivery.push({
+        last_read_id: id,
+        another_user_id: this.selectedItem.another_user.user_id
+      })
+      console.log(123123123, delivery)
+      if(delivery.length)
+        this.chatService.UpdateDeliveryStatus(delivery).subscribe(()=>{});
+
+
+
+
       this.chatMessagesNoRevert = res.chat_messages.slice();
       this.chatMessages = res.chat_messages.reverse().slice();
       console.log(res, this.profile);
@@ -116,8 +144,11 @@ export class MiddleChatComponent implements OnInit {
       this.older_messages_token = res.older_messages_token;
       this.total_number_of_messages   = res.total_number_of_messages;
       this.reload = true;
+      this.applicationRef.tick()
 
       setTimeout(() => {
+        this.applicationRef.tick()
+
         document.getElementById('body-chat').scrollBy(0, 500);
         $('#body-chat').scroll(() => {
           var height = $('#body-chat').scrollTop();
