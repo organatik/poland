@@ -38,7 +38,7 @@
             <span class="avatar">
 
               <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="Avatar">
-              <img *ngIf="!profile.avatar_url" src="../../../../assets/images.jpeg" alt="Avatar">
+              <img *ngIf="!profile.avatar_url" src="./assets/images.jpeg" alt="Avatar">
             </span>
           </div>
           <div class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
@@ -51,7 +51,7 @@
           <div *ngIf="item.author_id !== profile.user_id" class="col-md-1">
             <span class="avatar">
               <img *ngIf="selectedItem && selectedItem.another_user.avatar_url" [src]="selectedItem.another_user.avatar_url" alt="Avatar">
-              <img *ngIf="selectedItem && !selectedItem.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
+              <img *ngIf="selectedItem && !selectedItem.another_user.avatar_url" src="./assets/avatar.png" alt="Avatar">
             </span>
           </div>
         </div>

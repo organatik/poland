@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-1" style="padding-right:0;">
-        <img src="../../../assets/logo.png" alt="logo" style=" width: 68px;margin-top: 10px;">
+        <img src="./assets/logo.png" alt="logo" style=" width: 68px;margin-top: 10px;">
       </div>
       <div class="col-md-9" style="padding-left:0;">
         <ul>
@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-2">
         <span class="avatar">
-          <img *ngIf="profile && !profile.avatar_url" class="avatar" src="../../../assets/avatar.png" alt="">
+          <img *ngIf="profile && !profile.avatar_url" class="avatar" src="./assets/avatar.png" alt="">
           <img *ngIf="profile && profile.avatar_url" class="avatar" [src]="profile.avatar_url" alt="">
         </span>
       </div>

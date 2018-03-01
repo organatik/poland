@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-3 photo">
-          <img *ngIf="profile && !profile.avatar_url" src="../../../../assets/avatar.png" alt="">
+          <img *ngIf="profile && !profile.avatar_url" src="./assets/avatar.png" alt="">
           <img *ngIf="profile && profile.avatar_url" class="avatar" [src]="profile.avatar_url" alt="">
         </div>
         <div class="col-md-9" style="padding: 10px;">
@@ -27,7 +27,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 vacans">
-          <img src="../../../../../assets/vacans.jpeg" alt="vacans">
+          <img src="./assets/vacans.jpeg" alt="vacans">
           <p *ngIf="advert.advert.description" style="padding: 10px;">{{advert.advert.description}}</p>
           <p *ngIf="!advert.advert.description" style="padding: 10px;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consectetur cum delectus deserunt dolore ducimus eaque et eum fugiat illum impedit inventore ipsum iure neque nisi numquam officia perferendis, repellat reprehenderit sunt tempora temporibus unde voluptates, voluptatum! Delectus est eveniet id illo laborum natus nulla odit perspiciatis quis, sapiente sint veniam. Accusamus accusantium animi dicta necessitatibus nulla quae quasi, reiciendis veniam! Ab adipisci consequatur cupiditate dignissimos doloribus eaque, fugit illum iusto labore laudantium maxime minima molestiae nostrum numquam odio officia officiis provident quam qui quia quibusdam, quidem quo recusandae repellendus reprehenderit veritatis voluptate! Delectus exercitationem expedita inventore iusto numquam.</p>
         </div>
