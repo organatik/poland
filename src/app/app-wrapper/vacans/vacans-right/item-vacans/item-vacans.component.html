@@ -19,12 +19,17 @@
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             Активная вакансия
           </p>
+          <p *ngIf="!advert.active">
+            <i class="fa fa-minus-circle" style="color: red" aria-hidden="true"></i>
+            Вакансия снята
+          </p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 vacans">
           <img src="../../../../../assets/vacans.jpeg" alt="vacans">
-          <p style="padding: 10px;">{{advert.advert.description}}</p>
+          <p *ngIf="advert.advert.description" style="padding: 10px;">{{advert.advert.description}}</p>
+          <p *ngIf="!advert.advert.description" style="padding: 10px;"> empty</p>
         </div>
       </div>
       <div class="row">
