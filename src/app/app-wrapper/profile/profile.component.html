@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 wrapper">
       <div class="col-md-2">
-        <img *ngIf="name.value && !profile.avatar_url" src="./assets/avatar.png" alt="" style="max-width: 200px;">
+        <img *ngIf="name.value && !profile.avatar_url" src="./assets/avatar.png" alt="" style="max-width: 200px;border-radius: 50%">
         <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="" style="max-width: 200px;border-radius: 50%">
       </div>
       <div class="col-md-10 info">
@@ -28,20 +28,41 @@
             <input class="form-control" type="text" [formControl]="avatar_url">
           </span>
         </p>
-        <p *ngIf="country.value || editable">
-          <span>Страна:</span>
-          <span *ngIf="!editable">{{ country.value }}</span>
-          <span *ngIf="editable">
-            <input class="form-control" type="text" [formControl]="country">
-          </span>
-        </p>
-        <p *ngIf="education.value || editable">
-          <span>Образование:</span>
-          <span *ngIf="!editable">{{ education.value }}</span>
-          <span *ngIf="editable">
-            <input class="form-control" type="text" [formControl]="education">
-          </span>
-        </p>
+        <div *ngIf="country.value || editable">
+          <span class="tittle">Страна:</span>
+          <div class="dropper-dawn">
+            <button (click)="showDropdawnA = !showDropdawnA" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnA}">
+              <span>{{ countries[selectedCountry].tag  }} {{ countries[selectedCountry].country  }}</span>
+              <i class="fa fa-angle-down"></i>
+              <div *ngIf = "showDropdawnA" class="dropdawn-btn">
+                <ul>
+                  <li *ngFor="let country of countries;let i = index" (click)="selectCountry(i)"><a> <span>{{country.tag }}</span> {{ country.country }}</a></li>
+                </ul>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!--<p *ngIf="education.value || editable">-->
+          <!--<span>Образование:</span>-->
+          <!--<span *ngIf="!editable">{{ education.value }}</span>-->
+          <!--<span *ngIf="editable">-->
+            <!--<input class="form-control" type="text" [formControl]="education">-->
+          <!--</span>-->
+        <!--</p>-->
+        <div style="margin-top: 10px;" *ngIf="education.value || editable">
+          <span class="tittle">Образование:</span>
+          <div class="dropper-dawn">
+            <button (click)="showDropdawnB = !showDropdawnB" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnB}">
+              <span>{{ educationList[selectedEducation] }}</span>
+              <i class="fa fa-angle-down"></i>
+              <div *ngIf = "showDropdawnB" class="dropdawn-btn">
+                <ul>
+                  <li *ngFor="let education of educationList;let i = index" (click)="selectEducation(i)"><a>{{ education }}</a></li>
+                </ul>
+              </div>
+            </button>
+          </div>
+        </div>
         <div *ngIf="skillsList.length || editable" class="skills">
           <span style="padding-top: 22px">Навыки:</span>
           <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
@@ -53,8 +74,6 @@
           </ol>
           <button *ngIf="editable" (click)="addSkill()">Add skill</button>
         </div>
-
-
       </div>
       <div class="col-md-12 controls">
         <button *ngIf="!editable" (click)="edit()">Edit Profile</button>

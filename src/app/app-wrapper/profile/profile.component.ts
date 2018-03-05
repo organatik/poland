@@ -17,6 +17,10 @@ export class ProfileComponent implements OnInit {
 
   skills = new FormControl();
   skillsList = [];
+  showDropdawnA = false;
+  showDropdawnB = false;
+  selectedCountry = 0;
+  selectedEducation = 0;
 
   profile = {
     name: "",
@@ -25,7 +29,31 @@ export class ProfileComponent implements OnInit {
     country: "",
     education: "",
     skills: [],
-  }
+  };
+  countries = [
+    {
+      'tag': 'UA',
+      'country': 'Украина'
+    },
+    {
+      'tag': 'RU',
+      'country': 'Россия'
+    },
+    {
+      'tag': 'ENG',
+      'country': 'Англия'
+    },
+    {
+      'tag': 'FR',
+      'country': 'Франция'
+    },
+  ];
+  educationList = [
+    'choise 1',
+    'choise 2',
+    'choise 3',
+    'choise 4',
+  ]
 
   constructor(private profileService: ProfileService) {
     this.profileService.getProfile().subscribe((data: any) => {
@@ -46,8 +74,12 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-
-
+  selectCountry(index) {
+    this.selectedCountry = index;
+  }
+  selectEducation(index) {
+    this.selectedEducation = index;
+}
   edit() {
     this.editable = true;
   }

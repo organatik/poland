@@ -46,16 +46,89 @@
     border-radius: 30px
     box-shadow: 0px 4px 11px 0px #080808
     border: none
-    
+
     &:hover
       background-color: #1277f9
   i
     cursor: pointer
     color: red
   ol
-    display: grid
-    padding-left: 17px
+    padding-left: 14%
+    padding-top: 21px
   input
     background: transparent
     margin: 15px 0
 
+.dropper-dawn
+  position: relative
+  width: 20%
+  display: inline-block
+  margin-right: 15px
+.btn-left-sidebar
+  border: 1px solid rgb(232, 235, 241)
+  background: none
+  outline: none
+  border-radius: 20px
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 9px 20px
+  color: rgba(111, 115, 117, 1)
+  font-size: 13PX
+  height: 36px
+  i
+    transition: all 0.2s
+    font-size: 16px
+    position: relative
+.active-btn
+  background-color: #fff
+  border-radius: 20px 20px 0 0
+  i
+    transform: rotate(180deg)
+.dropdawn-btn
+  background: white
+  width: 100%
+  position: absolute
+  top: 36px
+  left: 0
+  z-index: 1000
+  border-radius: 0 0 20px 20px
+  overflow: hidden
+  -webkit-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  -moz-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+  border: 1px solid rgb(232, 235, 241)
+  border-top: 0
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    text-align: left
+    li
+      padding: 0
+      margin: 0
+      color: #9d9ea4
+      a
+        width: 100%
+        display: block
+        color: rgba(111, 115, 117, 1)
+        text-decoration: none
+        padding: 7px
+        padding-left: 20px
+        span
+          font-weight: bolder
+          width: 30px
+          color: black
+          text-align: right
+          display: inline-block
+      a:hover
+        background: #f1f1f1
+.tittle
+  font-weight: bold
+  display: block
+  float: left
+  width: 12%
+  text-align: right
+  padding-right: 10px
+  padding-top: 5px

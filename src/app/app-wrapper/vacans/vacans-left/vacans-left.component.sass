@@ -45,6 +45,7 @@
       margin-top: 10px
       border-color: #9d9ea4
       padding: 20px
+      outline: none
 
 
 .middle
@@ -110,17 +111,18 @@
     border-radius: 20px
     border: 1px solid  #98a0af
   button
-    padding: 30px 20px
-    text-align: center
-    background-color: rgb(85, 133, 254)
-    width: 101%
-    margin-top: 21px
-    font-size: 20px
-    color: white
-    outline: none
-    border: none
-    &:active
-      background-color: #1277f9
+    &:nth-child(3)
+      padding: 30px 20px
+      text-align: center
+      background-color: rgb(85, 133, 254)
+      width: 101%
+      margin-top: 21px
+      font-size: 20px
+      color: white
+      outline: none
+      border: none
+      &:active
+        background-color: #1277f9
 
 .dropdawn-wrap
   position: relative
@@ -199,7 +201,7 @@ input:-moz-placeholder
   z-index: 10000
   margin-left: -15px
   //height: calc(100vh - 78px)
-  height: 100%
+  height: 100.1%
   margin-top: -1px
   display: flex
   flex-flow: column
@@ -232,13 +234,15 @@ input:-moz-placeholder
   right: 20px
   color: white
   font-size: 25px
-  
+
 @media screen and ( min-height: 813px )
   .info-vacans
     .photo
       height: 20vh!important
     textarea
       height: 20vh
+      &::placeholder
+        color: #9d9ea4
   // .footer
   //   position: absolute
   //   bottom: 0
@@ -255,3 +259,72 @@ input:-moz-placeholder
     display: flex
     flex-flow: column
     justify-content: space-between
+.dropper-dawn
+  position: relative
+  width: 100%
+  display: inline-block
+  padding: 10px 10px 0 10px
+  .btn-sidebar
+    background: none
+    outline: none
+    width: 85%
+    justify-content: space-between
+    align-items: center
+    color: rgba(111, 115, 117, 1)
+    font-size: 13PX
+    height: 36px
+    display: inline-block
+    background-color: transparent
+    padding: 10px
+    border-radius: 20px
+    border: 1px solid #98a0af
+    i
+      transition: all 0.2s
+      font-size: 16px
+      position: relative
+      float: right
+  .active-btn
+    background-color: #fff
+    border-radius: 20px 20px 0 0
+    width: 87%
+    i
+      transform: rotate(180deg)
+  .dropdawn-btn
+    background: white
+    width: 83.5%
+    position: absolute
+    top: 46px
+    left: 41px
+    z-index: 1000
+    border-radius: 0 0 20px 20px
+    overflow: hidden
+    -webkit-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+    -moz-box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+    box-shadow: 2px 6px 17px -5px rgba(0,0,0,0.75)
+    border: 1px solid rgb(232, 235, 241)
+    border-top: 0
+
+    ul
+      list-style: none
+      padding: 0
+      margin: 0
+      text-align: left
+      li
+        padding: 0
+        margin: 0
+        color: #9d9ea4
+        a
+          width: 100%
+          display: block
+          color: rgba(111, 115, 117, 1)
+          text-decoration: none
+          padding: 7px
+          padding-left: 20px
+          span
+            font-weight: bolder
+            width: 30px
+            color: black
+            text-align: right
+            display: inline-block
+        a:hover
+          background: #f1f1f1

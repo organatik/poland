@@ -126,11 +126,21 @@
         <i class="fa fa-hashtag" aria-hidden="true"></i>
         <input type="text" placeholder="Введите хеш-теги..." [(ngModel)]='teg'>
       </p>
-      <p>
-        <i class="fa fa-map-marker" style="margin-right: 18px;" aria-hidden="true"></i>
-        <input type="text" placeholder="Введите локацию..." [(ngModel)]='advert.location'>
-      </p>
-      <button (click)="sabmitPage = !sabmitPage">Добавить вакансию</button>
+      <div class="dropper-dawn">
+        <i style="margin-right: 13px;font-size: 25px;" class="fa fa-map-marker" aria-hidden="true"></i>
+        <button (click)="showDropdawnB = !showDropdawnB" class="btn-sidebar" [ngClass] = "{'active-btn': showDropdawnB}">
+          <span>{{ educationList[selectedEducation] }}</span>
+          <i class="fa fa-angle-down"></i>
+          <div *ngIf = "showDropdawnB" class="dropdawn-btn">
+            <ul>
+              <li><a>Test1</a></li>
+              <li><a>Test2</a></li>
+              <li><a>Test3</a></li>
+            </ul>
+          </div>
+        </button>
+      </div>
+      <button *ngIf = "!sabmitPage" (click)="sabmitPage = !sabmitPage">Добавить вакансию</button>
     </div>
   </div>
 </div>
