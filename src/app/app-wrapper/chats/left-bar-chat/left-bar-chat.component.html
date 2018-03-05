@@ -24,7 +24,7 @@
         <div class="col-md-2 photo">
           <span class="avatar">
             <img *ngIf="obj.another_user && obj.another_user.avatar_url" [src]="obj.another_user.avatar_url" alt="Avatar">
-            <img *ngIf="obj.another_user && !obj.another_user.avatar_url" src="../../../../assets/avatar.png" alt="Avatar">
+            <img *ngIf="obj.another_user && !obj.another_user.avatar_url" src="./assets/avatar.png" alt="Avatar">
           </span>
         </div>
         <div *ngIf="obj.another_user" class="col-md-10" style="margin-top: 10px;">

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 wrapper">
       <div class="col-md-2">
-        <img *ngIf="name.value && !profile.avatar_url" src="../../../assets/avatar.png" alt="" style="max-width: 200px;">
+        <img *ngIf="name.value && !profile.avatar_url" src="./assets/avatar.png" alt="" style="max-width: 200px;">
         <img *ngIf="profile.avatar_url" [src]="profile.avatar_url" alt="" style="max-width: 200px;border-radius: 50%">
       </div>
       <div class="col-md-10 info">
