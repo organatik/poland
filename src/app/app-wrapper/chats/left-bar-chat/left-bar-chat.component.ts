@@ -38,11 +38,12 @@ export class LeftBarChatComponent implements OnInit {
   };
   keys = [];
   lable = 'Все';
+  sortNmae = 'all'
   ngOnInit() {
     setInterval(() => {
       this.applicationRef.tick()
       this.usersCopy = this.users.slice();
-
+      this.sortBy(this.sortNmae);
     }, 2222);
     this.usersCopy = this.users.slice();
     // this.item.currentSelectedItem.subscribe(selectedItem => this.selectedItem = selectedItem);

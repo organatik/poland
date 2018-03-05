@@ -10,8 +10,8 @@
           </button>
           <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
               <ul>
-                <li (click)="sortBy('all'); lable = 'Все';showDropdawnLeft = false"><a>Все</a></li>
-                <li *ngFor="let item of keys" (click)="sortBy(item); lable = item;showDropdawnLeft = false"><a>{{item}}</a></li>
+                <li (click)="sortBy('all'); lable = 'Все';showDropdawnLeft = false;sortNmae = 'all'"><a>Все</a></li>
+                <li *ngFor="let item of keys" (click)="sortBy(item); lable = item;showDropdawnLeft = false;sortNmae = item"><a>{{item}}</a></li>
               </ul>
           </div>
       </div>
