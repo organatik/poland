@@ -33,6 +33,18 @@
         <div class="col-md-12 my-msg">
           <div class="col-md-1"> -->
       <div class="row" *ngIf="reload">
+        <div class="col-md-12 msg-to-you" >
+          <div class="col-md-11 col-md-offset-5 col-md-6" >
+            <!--<p>{{item.chat_message.text | translateP: translate}}</p>-->
+            <p>{{res.answers[0].answer.description}}</p>
+
+          </div>
+          <div class="col-md-1">
+            <span class="avatar">
+              <img *ngIf="selectedItem && selectedItem.another_user.avatar_url" [src]="selectedItem.another_user.avatar_url" alt="Avatar">
+            </span>
+          </div>
+        </div>
         <div *ngFor="let item of chatMessages" class="col-md-12 " [ngClass]="{'my-msg': item.author_id === profile.user_id, 'msg-to-you': item.author_id !== profile.user_id}">
           <div *ngIf="item.author_id === profile.user_id" class="col-md-1">
             <span class="avatar">
@@ -43,7 +55,9 @@
           </div>
           <div class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
             <!--<p>{{item.chat_message.text | translateP: translate}}</p>-->
-            <p>{{item.chat_message.text}}</p>
+            <p *ngIf="item.chat_message.text">{{item.chat_message.text}}</p>
+            <img *ngIf="item.chat_message.image_url" [src]="item.chat_message.image_url">
+
             <span *ngIf="item.message_id === chatMessages.last_read_id">Прочитано</span>
             <span *ngIf="item.message_id === chatMessages.last_delivered_id && item.message_id !== chatMessages.last_read_id">Доставлено</span>
 

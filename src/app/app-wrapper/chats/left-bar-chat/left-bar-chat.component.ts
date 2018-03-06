@@ -1,5 +1,6 @@
 import {ApplicationRef, Component, Injectable, Input, OnInit} from '@angular/core';
 import {SelectedItemService} from '../../../selected-item.service';
+import {VacansService} from "../../../shared/service/vacans.service";
 var ws = new WebSocket("wss://chatchatchat.ml/ws-api/", "protocolOne");
 var callbacks = {};
 ws.onmessage = function(e) {
@@ -27,7 +28,7 @@ export class LeftBarChatComponent implements OnInit {
   usersCopy = [];
   selectedItem = {};
   epty = [{}, {},{},{},{}];
-  constructor( private item: SelectedItemService, private applicationRef: ApplicationRef) {
+  constructor( private item: SelectedItemService, private applicationRef: ApplicationRef, private vacansService: VacansService) {
     // item.globalChange.subscribe(()=>{
     //   this.applicationRef.tick()
     //   this.usersCopy = this.users.slice();
@@ -58,8 +59,17 @@ export class LeftBarChatComponent implements OnInit {
         this.sort[item.answers[0].advert.description] = 1;
       }
     }
-    // console.log(this.sort);
-    this.keys = Object.keys(this.sort);
+    let keys = []
+    this.vacansService.getVac().subscribe((data: any) => {
+      console.log(data.adverts, 1111)
+      // this.adverts = [];advert.description
+      for(let item of data.adverts){
+        this.keys.push(item.advert.description)
+      }
+      console.log(this.sort, this.keys, keys);
+
+    });
+    // this.keys = Object.keys(this.sort);
 
   }
   newSelectedItem(obj) {
