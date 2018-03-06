@@ -63,12 +63,19 @@
             </button>
           </div>
         </div>
-        <div *ngIf="skillsList.length || editable" class="skills">
-          <span style="padding-top: 22px">Навыки:</span>
-          <div>Программист <input type="checkbox" [(ngModel)]="hasProg" (ngModelChange)="saverange($event, 'Программист')"></div>
-          <div>Дизайнер <input type="checkbox" [(ngModel)]="hasDesg" (ngModelChange)="saverange($event, 'Дизайнер')"></div>
-          <div>Артист <input type="checkbox" [(ngModel)]="hasArt" (ngModelChange)="saverange($event, 'Артист')"></div>
-          <!--<input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >-->
+        <div *ngIf="skillsList.length || editable" class="skills col-md-12">
+          <div class="row">
+            <div class="col-md-3" style="width: 11%">
+              <span style=";width: 100%;padding: 0;padding-top: 22px">Навыки:</span>
+            </div>
+            <div class="col-md-9" style="padding-top: 10px;">
+              <div class="checkbox-wrapper col-md-12">Программист <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasProg" (ngModelChange)="saverange($event, 'Программист')"></div>
+              <div class="checkbox-wrapper col-md-12">Дизайнер <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasDesg" (ngModelChange)="saverange($event, 'Дизайнер')"></div>
+              <div class="checkbox-wrapper col-md-12">Артист <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasArt" (ngModelChange)="saverange($event, 'Артист')"></div>
+              <!--<input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >-->
+            </div>
+          </div>
+
           <!--<ol>-->
             <!--<li *ngFor="let skill of skillsList;let i = index">-->
               <!--{{ skill }}-->
