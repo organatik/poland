@@ -18,7 +18,7 @@
           <span>Дата рождения:</span>
           <span *ngIf="!editable">{{ bday.value | date}}</span>
           <span *ngIf="editable">
-            <input class="form-control" type="date" [formControl]="bday">
+            <input class="form-control" type="date" [formControl]="bday"  value="2013-01-08">
           </span>
         </p>
         <p *ngIf="avatar_url.value || editable">
@@ -31,12 +31,12 @@
         <div *ngIf="country.value || editable">
           <span class="tittle">Страна:</span>
           <div class="dropper-dawn">
-            <button (click)="showDropdawnA = !showDropdawnA" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnA}">
-              <span>{{ countries[selectedCountry].tag  }} {{ countries[selectedCountry].country  }}</span>
+            <button (click)="AdClick()" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnA && editable}">
+              <span>{{ tag[selectedCountry]  }} {{ selectedCountry  }}</span>
               <i class="fa fa-angle-down"></i>
-              <div *ngIf = "showDropdawnA" class="dropdawn-btn">
+              <div *ngIf = "showDropdawnA && editable" class="dropdawn-btn">
                 <ul>
-                  <li *ngFor="let country of countries;let i = index" (click)="selectCountry(i)"><a> <span>{{country.tag }}</span> {{ country.country }}</a></li>
+                  <li *ngFor="let country of countries;let i = index" (click)="selectCountry(country.country)"><a> <span>{{country.tag }}</span> {{ country.country }}</a></li>
                 </ul>
               </div>
             </button>
@@ -52,12 +52,12 @@
         <div style="margin-top: 10px;" *ngIf="education.value || editable">
           <span class="tittle">Образование:</span>
           <div class="dropper-dawn">
-            <button (click)="showDropdawnB = !showDropdawnB" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnB}">
-              <span>{{ educationList[selectedEducation] }}</span>
+            <button (click)="EdClick()" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnB && editable}">
+              <span>{{ selectedEducation }}</span>
               <i class="fa fa-angle-down"></i>
-              <div *ngIf = "showDropdawnB" class="dropdawn-btn">
+              <div *ngIf = "showDropdawnB && editable" class="dropdawn-btn">
                 <ul>
-                  <li *ngFor="let education of educationList;let i = index" (click)="selectEducation(i)"><a>{{ education }}</a></li>
+                  <li *ngFor="let education of educationList;let i = index" (click)="selectEducation(education)"><a>{{ education }}</a></li>
                 </ul>
               </div>
             </button>
@@ -65,14 +65,17 @@
         </div>
         <div *ngIf="skillsList.length || editable" class="skills">
           <span style="padding-top: 22px">Навыки:</span>
-          <input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >
-          <ol>
-            <li *ngFor="let skill of skillsList;let i = index">
-              {{ skill }}
-              <i *ngIf="editable" class="fa fa-times-circle" (click)="deleteSkill(i)" aria-hidden="true"></i>
-            </li>
-          </ol>
-          <button *ngIf="editable" (click)="addSkill()">Add skill</button>
+          <div>Программист <input type="checkbox" [(ngModel)]="hasProg" (ngModelChange)="saverange($event, 'Программист')"></div>
+          <div>Дизайнер <input type="checkbox" [(ngModel)]="hasDesg" (ngModelChange)="saverange($event, 'Дизайнер')"></div>
+          <div>Артист <input type="checkbox" [(ngModel)]="hasArt" (ngModelChange)="saverange($event, 'Артист')"></div>
+          <!--<input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >-->
+          <!--<ol>-->
+            <!--<li *ngFor="let skill of skillsList;let i = index">-->
+              <!--{{ skill }}-->
+              <!--<i *ngIf="editable" class="fa fa-times-circle" (click)="deleteSkill(i)" aria-hidden="true"></i>-->
+            <!--</li>-->
+          <!--</ol>-->
+          <!--<button *ngIf="editable" (click)="addSkill()">Add skill</button>-->
         </div>
       </div>
       <div class="col-md-12 controls">

@@ -13,10 +13,16 @@ export class AuthGuard implements CanActivate {
   credentials;
 
   constructor(private router: Router) {
+    let c = localStorage.getItem('credentials');
+    console.log(c);
+    if(c && c !== 'undefined'){
+      this.setCredentials(JSON.parse(c));
+    }
   }
 
   setCredentials(credentials) {
     this.credentials = credentials;
+    localStorage.setItem('credentials', JSON.stringify(credentials));
   }
 
   getCredentials(){

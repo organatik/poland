@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   skillsList = [];
   showDropdawnA = false;
   showDropdawnB = false;
-  selectedCountry = 0;
+  selectedCountry = "Украина";
   selectedEducation = 0;
 
   profile = {
@@ -36,50 +36,71 @@ export class ProfileComponent implements OnInit {
       'country': 'Украина'
     },
     {
-      'tag': 'RU',
-      'country': 'Россия'
-    },
-    {
-      'tag': 'ENG',
-      'country': 'Англия'
-    },
-    {
-      'tag': 'FR',
-      'country': 'Франция'
+      'tag': 'PL',
+      'country': 'Польша'
     },
   ];
+
+  tag = {
+    'Украина': 'UA',
+    'Польша': 'PL',
+  }
   educationList = [
-    'choise 1',
-    'choise 2',
-    'choise 3',
-    'choise 4',
-  ]
+    'Студент',
+    'Бакалавр',
+    'Магистр'
+  ];
+  hasProg;
+  hasDesg;
+  hasArt;
 
   constructor(private profileService: ProfileService) {
     this.profileService.getProfile().subscribe((data: any) => {
       console.log(data);
       this.name = new FormControl(data.profile.name);
-      if(data.profile.birth_date)
-      this.bday = new FormControl(data.profile.birth_date);
-      if(data.profile.country)
-      this.country = new FormControl(data.profile.country);
-      if(data.profile.education)
+      if(data.profile.birth_date){
+        this.bday = new FormControl(data.profile.birth_date.split('T')[0]);
+
+      }
+      if(data.profile.country){
+        this.country = new FormControl(data.profile.country);
+
+        this.selectedCountry = data.profile.country;
+
+      }
+      if(data.profile.education){
         this.education = new FormControl(data.profile.education);
+        this.selectedEducation = data.profile.education;
+
+      }
       if(data.profile.avatar_url){
         this.avatar_url = new FormControl(data.profile.avatar_url);
         this.profile.avatar_url = data.profile.avatar_url;
       }
-      if(data.profile.skills && data.profile.skills.length)
+      if(data.profile.skills && data.profile.skills.length){
         this.skillsList = data.profile.skills;
+        if(~this.skillsList.indexOf('Программист')){
+          this.hasProg =true;
+        }
+        if(~this.skillsList.indexOf('Дизайнер')){
+          this.hasDesg =true;
+        }
+        if(~this.skillsList.indexOf('Артист')){
+          this.hasArt =true;
+        }
+      }
     })
   }
 
   selectCountry(index) {
     this.selectedCountry = index;
+    (this.country as any).value = index;
   }
   selectEducation(index) {
     this.selectedEducation = index;
-}
+    (this.education as any).value = index;
+
+  }
   edit() {
     this.editable = true;
   }
@@ -115,4 +136,19 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  EdClick(){
+    if(this.editable)this.showDropdawnB = !this.showDropdawnB
+  }
+
+  AdClick(){
+    if(this.editable)this.showDropdawnA = !this.showDropdawnA
+  }
+  saverange(e, type){
+    if(e){
+      this.skillsList.push(type)
+    } else {
+      this.skillsList.splice(this.skillsList.indexOf(type), 1)
+    }
+    console.log(this.skillsList)
+  }
 }

@@ -11,7 +11,7 @@ export class VacansLeftComponent implements OnInit {
   teg = "";
   advert = {
     adverter_id: "",
-    location: "",
+    location: "Украина",
     description: "",
     geo_position : {
       latitude: 1,
@@ -23,6 +23,7 @@ export class VacansLeftComponent implements OnInit {
       hashtags: []
     }
   };
+  showDropdawnB
 
   profile;
   constructor(private vacansService: VacansService, private profileService: ProfileService) {
@@ -35,6 +36,20 @@ export class VacansLeftComponent implements OnInit {
   }
   showSpiner;
   sabmitPage;
+
+  selectLocation(name){
+    this.advert.location = name;
+    setTimeout(() => {
+      this.showDropdawnB = false;
+
+    }, 2000)
+  }
+
+   showModal(){
+     if(this.advert.description){
+       this.sabmitPage = true;
+     }
+   }
   create(){
     if(this.teg){
       let tegs = this.teg.split("#");
@@ -54,7 +69,7 @@ export class VacansLeftComponent implements OnInit {
       this.teg = '';
       this.advert = {
         adverter_id: "",
-        location: "",
+        location: "Украина",
         description: "",
         geo_position : {
           latitude: 1,

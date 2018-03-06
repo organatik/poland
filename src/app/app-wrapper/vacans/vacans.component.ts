@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ApplicationRef, Component, OnInit} from '@angular/core';
 import {VacansService} from "../../shared/service/vacans.service";
 
 @Component({
@@ -8,20 +8,27 @@ import {VacansService} from "../../shared/service/vacans.service";
 })
 export class VacansComponent implements OnInit {
   adverts = [];
-  constructor(private vacansService: VacansService) {
+  constructor(private vacansService: VacansService, private applicationRef: ApplicationRef) {
     this.vacansService.refreshEvent.subscribe((data) => {
       this.getData();
     });
     this.getData();
   }
-
+  refresh = true;
   ngOnInit() {
   }
   getData(){
-    this.adverts = [];
     this.vacansService.getVac().subscribe((data: any) => {
       console.log(data)
-      this.adverts = data.adverts;
+      // this.adverts = [];
+      this.refresh = false;
+      this.adverts = data.adverts.slice();
+
+      setTimeout(() => {
+        this.refresh = true;
+        this.applicationRef.tick()
+
+      },10)
     });
   }
 }

@@ -49,16 +49,16 @@
           <p>Welcome <span *ngIf="!registerShow">back!</span></p>
           <div *ngIf="getCodeShow || acceptCodeShow" class="col-md-12 ">
             <i class="fa fa-mobile" aria-hidden="true"></i>
-            <input type="text" placeholder="Mobile phone" [(ngModel)]="phone" >
+            <input type="text" placeholder="Mobile phone" [(ngModel)]="phone" (keyup.enter)="GetCode()">
           </div>
           <div *ngIf="getCodeShow || acceptCodeShow" class="col-md-12 input-row">
             <i class="material-icons">lock_outline</i>
             <!-- <i class="fa fa-lock" aria-hidden="true"></i> -->
-            <input type="text" placeholder="Code from sms" [(ngModel)]="code">
+            <input type="text" placeholder="Code from sms" [(ngModel)]="code" (keyup.enter)="CheckCode()">
           </div>
           <div *ngIf="registerShow" class="col-md-12 input-row">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="text" placeholder="Name" [(ngModel)]="name">
+            <input type="text" placeholder="Name" [(ngModel)]="name" (keyup.enter)="reg()">
           </div>
           <div class="row">
             <div class="col-md-12">

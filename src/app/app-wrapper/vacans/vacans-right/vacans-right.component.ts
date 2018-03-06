@@ -18,6 +18,7 @@ export class VacansRightComponent implements OnInit {
   label = 'Все вакансии за сегодня';
 
   ngOnInit() {
+    this.advertsObj = this.adverts;
     this.advertsObj = this.adverts.sort(function(a: any, b: any){
       return +new Date(b['advert']['open_time']) - +new Date(a['advert']['open_time']);
     });
@@ -33,7 +34,6 @@ export class VacansRightComponent implements OnInit {
             this.today.push(item);
           this.thisMonth.push(item);
         }
-        console.log(this.today, date === nowday && nowMonth === month)
       }
     });
   }

@@ -36,25 +36,25 @@
           <div class="dropdawn-wrap">
             <button (click)="showDropdawnLeft = !showDropdawnLeft" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnLeft}" >
                <span *ngIf="+advert.vacancy.hiring_type === 0">
-                 FULL TIME
+                 Полный рабочий день
                </span>
               <span *ngIf="+advert.vacancy.hiring_type === 1">
-                 PART_TIME
+                 Частичная занятость
                </span>
               <span *ngIf="+advert.vacancy.hiring_type === 2">
-                 CONTRACT
+                 Контракт
                </span>
               <span *ngIf="+advert.vacancy.hiring_type === 3">
-                 ONE_TIME
+                 Одноразовы проект
                </span>
                <i class="fa fa-angle-down"></i>
              </button>
              <div *ngIf = "showDropdawnLeft" class="dropdawn-btn">
                  <ul>
-                   <li (click)="advert.vacancy.hiring_type = 0;showDropdawnLeft = false"><a>FULL TIME</a></li>
-                   <li (click)="advert.vacancy.hiring_type = 1;showDropdawnLeft = false"><a>PART_TIME</a></li>
-                   <li (click)="advert.vacancy.hiring_type = 2;showDropdawnLeft = false"><a>CONTRACT</a></li>
-                   <li (click)="advert.vacancy.hiring_type = 3;showDropdawnLeft = false"><a>ONE_TIME</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 0;showDropdawnLeft = false"><a>Полный рабочий день</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 1;showDropdawnLeft = false"><a>Частичная занятость</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 2;showDropdawnLeft = false"><a>Контракт</a></li>
+                   <li (click)="advert.vacancy.hiring_type = 3;showDropdawnLeft = false"><a>Одноразовы проект</a></li>
                  </ul>
              </div>
          </div>
@@ -129,18 +129,17 @@
       <div class="dropper-dawn">
         <i style="margin-right: 13px;font-size: 25px;" class="fa fa-map-marker" aria-hidden="true"></i>
         <button (click)="showDropdawnB = !showDropdawnB" class="btn-sidebar" [ngClass] = "{'active-btn': showDropdawnB}">
-          <span>{{ educationList[selectedEducation] }}</span>
+          <span>{{ advert.location }}</span>
           <i class="fa fa-angle-down"></i>
           <div *ngIf = "showDropdawnB" class="dropdawn-btn">
             <ul>
-              <li><a>Test1</a></li>
-              <li><a>Test2</a></li>
-              <li><a>Test3</a></li>
+              <li (click)="selectLocation('Польша')"><a>Польша</a></li>
+              <li (click)="selectLocation('Украина')"><a>Украина</a></li>
             </ul>
           </div>
         </button>
       </div>
-      <button *ngIf = "!sabmitPage" (click)="sabmitPage = !sabmitPage">Добавить вакансию</button>
+      <button *ngIf = "!sabmitPage" (click)="showModal()">Добавить вакансию</button>
     </div>
   </div>
 </div>

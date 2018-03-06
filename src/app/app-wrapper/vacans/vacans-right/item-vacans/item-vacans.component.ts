@@ -12,14 +12,20 @@ export class ItemVacansComponent implements OnInit {
 
   @Input() advert;
   @Input() profile;
-
+  teg = "";
   ngOnInit() {
-
+    if(this.advert &&  this.advert.advert && this.advert.advert.vacancy &&  this.advert.advert.vacancy.hashtags)
+      for(let item of this.advert.advert.vacancy.hashtags){
+      if(item)
+        this.teg += '#' + item;
+      }
   }
 
   remove(){
     this.vacansService.removeVac(this.advert).subscribe((data) => {
       console.log(data);
+      // this.advert = null;
+
       this.vacansService.refreshEvent.emit("");
     });
   }
@@ -28,7 +34,9 @@ export class ItemVacansComponent implements OnInit {
   close(){
     this.vacansService.closeVac(this.advert).subscribe((data) => {
       console.log(data);
-      this.vacansService.refreshEvent.emit("");
+      this.advert.active = false;
+      this.advert.advert.close_time = "d123123"
+      // this.vacansService.refreshEvent.emit("");
     });
   }
 }
