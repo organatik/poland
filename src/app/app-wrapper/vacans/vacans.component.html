@@ -1,6 +1,6 @@
 <app-nav></app-nav>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row row-eq-height">
     <app-vacans-left></app-vacans-left>
     <app-vacans-right *ngIf="adverts.length > 0 && refresh" [adverts]="adverts"></app-vacans-right>
     <app-empty-vacans *ngIf="adverts.length === 0 && refresh"></app-empty-vacans>

@@ -195,11 +195,12 @@ input:-moz-placeholder
 
   // Vacans page
 .sabmit-page
-  position: absolute
-  width: calc(100% + 2px)
+  position: fixed
+  width: calc(25% + 2px)
   background: rgba(12, 7, 49, 0.57)
   z-index: 10000
   margin-left: -15px
+  top: 0
   //height: calc(100vh - 78px)
   height: 100.1%
   margin-top: -1px
@@ -254,7 +255,7 @@ input:-moz-placeholder
 @media (max-height: 786px)
   .wrapper
     height: 100%
-@media (min-height: 786px)
+@media (min-height: 600px)
   .wrapper
     display: flex
     flex-flow: column
