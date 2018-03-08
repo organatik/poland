@@ -33,7 +33,7 @@
           <div class="dropper-dawn">
             <button (click)="AdClick()" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnA && editable}">
               <span>{{ tag[selectedCountry]  }} {{ selectedCountry  }}</span>
-              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-down"  *ngIf="editable"></i>
               <div *ngIf = "showDropdawnA && editable" class="dropdawn-btn">
                 <ul>
                   <li *ngFor="let country of countries;let i = index" (click)="selectCountry(country.country)"><a> <span>{{country.tag }}</span> {{ country.country }}</a></li>
@@ -54,7 +54,7 @@
           <div class="dropper-dawn">
             <button (click)="EdClick()" class="btn-left-sidebar" [ngClass] = "{'active-btn': showDropdawnB && editable}">
               <span>{{ selectedEducation }}</span>
-              <i class="fa fa-angle-down"></i>
+              <i class="fa fa-angle-down" *ngIf="editable"></i>
               <div *ngIf = "showDropdawnB && editable" class="dropdawn-btn">
                 <ul>
                   <li *ngFor="let education of educationList;let i = index" (click)="selectEducation(education)"><a>{{ education }}</a></li>
@@ -69,9 +69,9 @@
               <span style=";width: 100%;padding: 0;padding-top: 22px">Навыки:</span>
             </div>
             <div class="col-md-9" style="padding-top: 10px;">
-              <div class="checkbox-wrapper col-md-12">Программист <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasProg" (ngModelChange)="saverange($event, 'Программист')"></div>
-              <div class="checkbox-wrapper col-md-12">Дизайнер <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasDesg" (ngModelChange)="saverange($event, 'Дизайнер')"></div>
-              <div class="checkbox-wrapper col-md-12">Артист <input type="checkbox" [disabled]="!editable" [(ngModel)]="hasArt" (ngModelChange)="saverange($event, 'Артист')"></div>
+              <div class="checkbox-wrapper col-md-12">Программист <input *ngIf="editable" type="checkbox" [disabled]="!editable" [(ngModel)]="hasProg" (ngModelChange)="saverange($event, 'Программист')"></div>
+              <div class="checkbox-wrapper col-md-12">Дизайнер <input *ngIf="editable" type="checkbox" [disabled]="!editable" [(ngModel)]="hasDesg" (ngModelChange)="saverange($event, 'Дизайнер')"></div>
+              <div class="checkbox-wrapper col-md-12">Артист <input *ngIf="editable" type="checkbox" [disabled]="!editable" [(ngModel)]="hasArt" (ngModelChange)="saverange($event, 'Артист')"></div>
               <!--<input *ngIf="editable" type="text" class="form-control" (keyup.enter)="addSkill()"  placeholder="Add your skill..." [formControl]="skills" >-->
             </div>
           </div>

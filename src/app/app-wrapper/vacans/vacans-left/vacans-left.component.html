@@ -73,7 +73,7 @@
       <div class="photo col-md-12">
         <p>Перетяните сюда фото</p>
       </div>
-      <textarea [(ngModel)]='advert.description'
+      <textarea [(ngModel)]='advert.description' [ngClass]="{'showError': showError}"
                 placeholder="Опишите какой специалист вам нужен и для чего, сколько готовы платить, включено ли проживание, готовы липомочь с документами?"
                 rows="5" cols="30">
       </textarea>

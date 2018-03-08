@@ -15,7 +15,7 @@ export class VacansRightComponent implements OnInit {
   today = [];
   thisMonth = [];
   advertsObj = []
-  label = 'Все вакансии за сегодня';
+  label = 'Все вакансии';
 
   ngOnInit() {
     this.advertsObj = this.adverts;

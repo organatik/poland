@@ -48,8 +48,14 @@ export class VacansLeftComponent implements OnInit {
    showModal(){
      if(this.advert.description){
        this.sabmitPage = true;
+       this.showError = false;
+
+     } else {
+       this.showError = true;
+
      }
    }
+  showError = false;
   create(){
     if(this.teg){
       let tegs = this.teg.split("#");
@@ -57,8 +63,9 @@ export class VacansLeftComponent implements OnInit {
     }
 
     this.advert.vacancy.hiring_type = +this.advert.vacancy.hiring_type;
-    if(this.advert.description)
+    if(this.advert.description){
     this.vacansService.createVac(this.advert).subscribe((data) => {
+
       console.log(data);
       this.showSpiner = true;
       this.sabmitPage = false;
@@ -81,7 +88,10 @@ export class VacansLeftComponent implements OnInit {
           hashtags: []
         }
       };
-    });
+    });}
+    else {
+      console.log(77)
+    }
   }
 
 }

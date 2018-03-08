@@ -30,8 +30,18 @@
         <div *ngIf="obj.another_user" class="col-md-10" style="margin-top: 10px;">
 
           <p class="name-head">{{ obj.another_user.name }}
-            <span *ngIf = "obj.last_message && !today(obj.last_message.chat_message.time)" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'MM/dd/yy h:mm' }}</span>
-            <span *ngIf = "obj.last_message && today(obj.last_message.chat_message.time)" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'h:mm' }}</span>
+            <span *ngIf = "obj.last_message && !today(obj.last_message.chat_message.time)" class="pull-right date-clock">
+              {{ obj.last_message.chat_message.time  |date:'MM/dd/yy h:mm' }}
+            </span>
+            <span *ngIf = "obj.last_message && today(obj.last_message.chat_message.time)" class="pull-right date-clock">
+              {{ obj.last_message.chat_message.time  |date:'h:mm' }}
+            </span>
+            <span *ngIf = "!obj.last_message && obj.answers[0].answer.open_time && !today(obj.answers[0].answer.open_time)" class="pull-right date-clock">
+              {{ obj.answers[0].answer.open_time  |date:'MM/dd/yy h:mm' }}
+            </span>
+            <span *ngIf = "!obj.last_message && obj.answers[0].answer.open_time && today(obj.answers[0].answer.open_time)" class="pull-right date-clock">
+              {{ obj.answers[0].answer.open_time  |date:'h:mm' }}
+            </span>
           </p>
           <div class="star-wrap">
               <p class="from-age">{{ obj.another_user.country }}, {{ calculateAge(obj.another_user.birth_date) }} age </p>
@@ -60,14 +70,10 @@
           </div>
 
           <p *ngIf='obj.last_message' style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: 90px;">
-            <!-- <span class="msg-status">
-              <i *ngIf="obj.last_message.message_id !== obj.last_read_id" class="fa fa-envelope" aria-hidden="true"></i>
-              <i *ngIf="obj.last_message.message_id === obj.last_read_id" class="fa fa-envelope-open" aria-hidden="true"></i> -->
-
-              <!--<i class="fa fa-times-circle" aria-hidden="true"></i>-->
-
-            <!-- </span> -->
             {{ obj.last_message.chat_message.text }}
+          </p>
+          <p *ngIf='!obj.last_message && obj.answers[0].answer.description' style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: 90px;">
+            {{ obj.answers[0].answer.description }}
           </p>
         </div>
       </div>
