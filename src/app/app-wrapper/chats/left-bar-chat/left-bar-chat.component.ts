@@ -66,7 +66,7 @@ export class LeftBarChatComponent implements OnInit {
       for(let item of data.adverts){
         this.keys.push(item.advert.description)
       }
-      console.log(this.sort, this.keys, keys);
+      // console.log(this.sort, this.keys, keys);
 
     });
     // this.keys = Object.keys(this.sort);
@@ -81,6 +81,13 @@ export class LeftBarChatComponent implements OnInit {
     var ageDifMs = Date.now() - new Date(birthday).getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  today(date){
+    let today = new Date().getDate();
+    let todayS = new Date(date).getDate();
+    // console.log(today, todayS)
+    return today === todayS;
   }
 
   sortBy(name){

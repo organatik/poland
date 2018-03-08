@@ -30,7 +30,8 @@
         <div *ngIf="obj.another_user" class="col-md-10" style="margin-top: 10px;">
 
           <p class="name-head">{{ obj.another_user.name }}
-            <span *ngIf = "obj.last_message" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'MM/dd/yy h:mm' }}</span>
+            <span *ngIf = "obj.last_message && !today(obj.last_message.chat_message.time)" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'MM/dd/yy h:mm' }}</span>
+            <span *ngIf = "obj.last_message && today(obj.last_message.chat_message.time)" class="pull-right date-clock">{{ obj.last_message.chat_message.time  |date:'h:mm' }}</span>
           </p>
           <div class="star-wrap">
               <p class="from-age">{{ obj.another_user.country }}, {{ calculateAge(obj.another_user.birth_date) }} age </p>
@@ -71,7 +72,8 @@
         </div>
       </div>
     </div>
-      <div *ngIf="users.length === 0">
+      <div>
+        <!--<div *ngIf="users.length === 0">-->
       <div  *ngFor="let obj of epty" class="row empty-msg">
         <div class="col-md-2">
           <span class="avatar">
@@ -81,7 +83,7 @@
         <div class="col-md-10 body">
           <span></span> <span></span>
           <p></p>
-          <p></p>
+          <p style="margin: 0;"></p>
         </div>
       </div>
       </div>

@@ -22,11 +22,19 @@ export class ChatService {
 
     return this.http.post(apiUrl + 'chat-info', obj);
   }
-  chatSend(another_user_id, answer_id, text){
+  chatSend(another_user_id, answer_id, text, typing_state?){
     let obj = this.authGuard.getCredentials();
     obj.another_user_id = another_user_id;
     obj.answer_id = answer_id;
-    obj.text = text;
+    if(typing_state || typing_state === 0){
+
+      obj.typing_state = typing_state;
+      delete obj.text;
+
+    } else {
+      obj.text = text;
+      delete obj.typing_state;
+    }
     return this.http.post(apiUrl + 'chat-send', obj);
   }
 

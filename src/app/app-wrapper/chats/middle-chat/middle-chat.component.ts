@@ -90,7 +90,10 @@ export class MiddleChatComponent implements OnInit {
 
           }
           if(item.new_message){
-            this.getChatData();
+            console.log(item.new_message.chat_message, 999999999999999);
+            this.chatMessages.push(item.new_message);
+            this.chatMessagesNoRevert.unshift(item.new_message);
+            // this.getChatData();
             let delivery =[]
                 delivery.push({
                   last_read_id: item.new_message.message_id,
@@ -104,14 +107,19 @@ export class MiddleChatComponent implements OnInit {
           }
         }
         // events[0].typing_event.state === "NOT_TYPING"
+        console.log(res, 44444444444);
+
         this.localChatListen(res.rev);
       });
   }
 
+  lastMessageId;
+
   getChatData(){
-    this.reload = false;
     if(this.selectedItem)
     this.chatService.chatInfo(this.selectedItem.another_user.user_id).subscribe((res: any) => {
+      this.reload = false;
+
       let delivery =[];
       let id = 0;
       for(let item of res.chat_messages){
@@ -133,13 +141,22 @@ export class MiddleChatComponent implements OnInit {
 
       this.chatMessagesNoRevert = res.chat_messages.slice();
       this.chatMessages = res.chat_messages.reverse().slice();
+
+      for(let item of this.chatMessages){
+        if(item.author_id === this.profile.user_id){
+          this.lastMessageId = item.message_id
+        }
+      }
+
       console.log(res, this.profile);
       let g =this.authGuard.getCredentials();
 
       this.user_id = g.user_id;
       this.session_id = g.session_id;
       this.answereruser_id = res.answers[0].answerer.user_id;
-      this.localChatListen(res.rev);
+      setTimeout(() => {
+        this.localChatListen(res.rev);
+      },3000);
       this.res = res;
       this.older_messages_token = res.older_messages_token;
       this.total_number_of_messages   = res.total_number_of_messages;
@@ -178,6 +195,16 @@ export class MiddleChatComponent implements OnInit {
        this.getChatData();
         this.selectedText = "";
       });
+  }
+
+  hasType = 1;
+
+  type(e){
+    console.log(123, e)
+      this.chatService.chatSend(this.selectedItem.another_user.user_id, this.selectedItem.answers[0].answer_id, this.selectedText, e).subscribe((data) => {
+
+      });
+
   }
 
   translate(){

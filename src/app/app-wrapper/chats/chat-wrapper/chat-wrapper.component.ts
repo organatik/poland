@@ -33,6 +33,7 @@ export class ChatWrapperComponent implements OnInit {
   ngOnInit() {
     setTimeout(()=>{
       this.localChatListen(this.rev);
+      this.watchanswers(this.rev);
     }, 3000)
 
 
@@ -59,12 +60,18 @@ export class ChatWrapperComponent implements OnInit {
       }
 
       this.chatService.UpdateDeliveryStatus(delivery).subscribe(()=>{});
-      this.applicationRef.tick()
+      this.applicationRef.tick();
+      // answers[0].answer.description open_time
       this.chatsUser = chats.sort(function(a: any, b: any){
-        if(!b.last_message && !a.last_message)
-          return  0;
-        if (!a.last_message)    return 1;
-        else if(!b.last_message) return  0;
+        if(!b.last_message && !a.last_message){
+          if (a.answers[0].answer.open_time && b.answers[0].answer.open_time)
+            return  +new Date(b.answers[0].answer.open_time) - +new Date(a.answers[0].answer.open_time);
+          // return  0;
+        }
+        if (!a.last_message)
+          return +new Date(b['last_message']['chat_message']['time']) - +new Date(a.answers[0].answer.open_time);
+        else if(!b.last_message)
+          return  +new Date(b.answers[0].answer.open_time) - +new Date(a['last_message']['chat_message']['time']);
         return +new Date(b['last_message']['chat_message']['time']) - +new Date(a['last_message']['chat_message']['time']);
       });
       setTimeout(()=>{
@@ -101,6 +108,25 @@ export class ChatWrapperComponent implements OnInit {
         });
 
         this.localChatListen(res.rev);
+      });
+  }
+
+  watchanswers(rev){
+    call("watch-answers",
+      {
+        "session_id" : this.obj.session_id,
+        "user_id" : this.obj.user_id,
+        "rev": rev,
+        is_adverter:true
+      }
+      , (res) => {
+        console.log(res)
+        if(res.changes && res.changes.length){
+          this.getData();
+          this.applicationRef.tick();
+        }
+
+        this.watchanswers(res.rev);
       });
   }
 }

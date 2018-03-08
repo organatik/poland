@@ -11,11 +11,12 @@
           <li routerLink="/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">О компании</li>
         </ul>
       </div>
-      <div class="col-md-2">
-        <div *ngIf="showLogOut" (click)="logOut()"> LogOut</div>
+      <div class="col-md-2" style="position: relative;">
+        <div *ngIf="showLogOut"></div>
+        <div class="log-out"  (click)="logOut()" [ngClass] = "{'log-out-style': showLogOut}">Выйти</div>
         <span class="avatar" (click)="showLogOut = !showLogOut">
           <img *ngIf="profile && !profile.avatar_url" class="avatar" src="./assets/avatar.png" alt="">
-          <img *ngIf="profile && profile.avatar_url" class="avatar" [src]="profile.avatar_url" alt="">
+          <img style="box-shadow: -2px 1px 3px 0px rgba(0,0,0,0.75)" *ngIf="profile && profile.avatar_url" class="avatar" [src]="profile.avatar_url" alt="">
         </span>
       </div>
     </div>

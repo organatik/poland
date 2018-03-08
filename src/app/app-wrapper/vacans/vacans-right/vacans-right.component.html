@@ -12,9 +12,9 @@
          </span>
          <i class="fa fa-angle-down"></i>
        </button>
-       <div *ngIf = "showDropdawn" class="dropdawn-btn">
+       <div  *ngIf = "showDropdawn" class="dropdawn-btn">
           <ul>
-            <li (click)="advertsObj = adverts;showDropdawn = false;label = 'Все вакансии за сегодня'">Все вакансии за сегодня
+            <li (click)="advertsObj = adverts;showDropdawn = false;label = 'Все вакансии за сегодня'">Все вакансии
               <span>
                 ({{adverts.length}})
               </span>

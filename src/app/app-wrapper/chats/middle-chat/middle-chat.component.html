@@ -36,7 +36,7 @@
         <div class="col-md-12 msg-to-you" >
           <div class="col-md-11 col-md-offset-5 col-md-6" >
             <!--<p>{{item.chat_message.text | translateP: translate}}</p>-->
-            <p>{{res.answers[0].answer.description}}</p>
+            <p *ngIf="res && res.answers">{{res.answers[0].answer.description}}</p>
 
           </div>
           <div class="col-md-1">
@@ -45,7 +45,7 @@
             </span>
           </div>
         </div>
-        <div *ngFor="let item of chatMessages" class="col-md-12 " [ngClass]="{'my-msg': item.author_id === profile.user_id, 'msg-to-you': item.author_id !== profile.user_id}">
+        <div *ngFor="let item of chatMessages;let i = index" class="col-md-12 " [ngClass]="{'my-msg': item.author_id === profile.user_id, 'msg-to-you': item.author_id !== profile.user_id}">
           <div *ngIf="item.author_id === profile.user_id" class="col-md-1">
             <span class="avatar">
 
@@ -53,13 +53,13 @@
               <img *ngIf="!profile.avatar_url" src="./assets/images.jpeg" alt="Avatar">
             </span>
           </div>
-          <div class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
+          <div *ngIf="res" class="col-md-11" [ngClass]="{'col-md-6': item.author_id !== profile.user_id, 'col-md-offset-5': item.author_id !== profile.user_id}">
             <!--<p>{{item.chat_message.text | translateP: translate}}</p>-->
             <p *ngIf="item.chat_message.text">{{item.chat_message.text}}</p>
             <img *ngIf="item.chat_message.image_url" [src]="item.chat_message.image_url">
-
-            <span *ngIf="item.message_id === chatMessages.last_read_id">Прочитано</span>
-            <span *ngIf="item.message_id === chatMessages.last_delivered_id && item.message_id !== chatMessages.last_read_id">Доставлено</span>
+            <span *ngIf="lastMessageId && +lastMessageId === +item.message_id  && item.author_id === profile.user_id && +item.message_id > +res.last_delivered_id">Отправлено</span>
+            <span *ngIf="lastMessageId && +lastMessageId === +item.message_id && item.author_id === profile.user_id && +item.message_id === +res.last_delivered_id && +item.message_id !== +res.last_read_id">Доставлено</span>
+            <span *ngIf="lastMessageId && +lastMessageId === +item.message_id  && item.author_id === profile.user_id && +item.message_id === +res.last_read_id">Прочитано</span>
 
           </div>
           <div *ngIf="item.author_id !== profile.user_id" class="col-md-1">
@@ -78,7 +78,7 @@
       <!-- <i class="fa fa-question-circle" aria-hidden="true"></i> -->
       <i (click)="send()" class="fa fa-comments" aria-hidden="true"></i>
       <span style="   position: absolute;top: 0;" *ngIf="typing_event_state.type === 'TYPING'">{{selectedItem.another_user.name}} печатает...</span>
-      <input (keyup.enter)="send()" placeholder="Введите текст..." type="text" [(ngModel)]="selectedText">
+      <input (keyup.enter)="send()" (focusout)="type(0)" (focus)="type(1)" placeholder="Введите текст..." type="text" [(ngModel)]="selectedText">
     </div>
   </div>
 </div>

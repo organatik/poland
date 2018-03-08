@@ -26,11 +26,13 @@ import {VacansService} from "./shared/service/vacans.service";
 import { EmptyChatComponent } from './app-wrapper/chats/empty-chat/empty-chat.component';
 import { EmptyVacansComponent } from './app-wrapper/vacans/empty-vacans/empty-vacans.component';
 import {TranslatePipe} from "./shared/translate";
+import {ClickOutsideDirective} from "./shared/click-outside";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ClickOutsideDirective,
     LoginPageComponent,
     AppWrapperComponent,
     LeftBarChatComponent,

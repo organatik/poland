@@ -29,6 +29,7 @@ export class VacansRightComponent implements OnInit {
         let month = new Date(item.advert.open_time).getMonth();
         let nowday = new Date().getDate();
         let nowMonth = new Date().getMonth();
+        console.log(nowMonth , month, date , nowday)
         if(nowMonth === month){
           if(date === nowday)
             this.today.push(item);
@@ -36,6 +37,13 @@ export class VacansRightComponent implements OnInit {
         }
       }
     });
+  }
+  showDropdawn;
+  close(e){
+    if(e && this.showDropdawn){
+      this.showDropdawn = false
+    }
+    console.log(e)
   }
 
 }
